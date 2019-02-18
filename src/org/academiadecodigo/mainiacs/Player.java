@@ -8,9 +8,11 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 public class Player implements KeyboardHandler {
 
-    private Stage currentStage;
+    private Screen currentScreen;
+    private Game game;
 
     Player(){
+
         Keyboard keyboard = new Keyboard(this);
 
         KeyboardEvent spaceBarEvent = new KeyboardEvent();
@@ -40,31 +42,52 @@ public class Player implements KeyboardHandler {
         keyboard.addEventListener(key3Event);
         keyboard.addEventListener(key4Event);
 
-
-        //TODO: IMPLEMENT SHIFT KEY (NUM 16)
     }
 
+    public void setStage(Stage currentStage) {
+        this.currentStage = currentStage;
+    }
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
+
+        // Case main menu
+
+        if (currentScreen.getScreenType() == ScreenType.START_MENU ){
+
+            switch (keyboardEvent.getKey()) {
+
+                case KeyboardEvent.KEY_1:
+                    game.start(Stage.stage1);
+                    //TODO : escolher se é preciso fazer um enum StageType, ou inicializar com o Stage específico.
+
+            }
+
+            return;
+        }
+
+
+        // Case stage
+
         switch (keyboardEvent.getKey()) {
 
             case KeyboardEvent.KEY_1:
+
                 //method stage
-                //currentStage.keyPressed(1);
+                currentScreen.keyPressed(Column.COLUMN1);
                 break;
 
             case KeyboardEvent.KEY_2:
-                //currentStage.keyPressed(2);
+                currentScreen.keyPressed(Column.COLUMN2);
                 break;
 
             case KeyboardEvent.KEY_3:
-                //currentStage.keyPressed(3);
+                currentScreen.keyPressed(Column.COLUMN3);
                 break;
 
             case KeyboardEvent.KEY_4:
-                //currentStage.keyPressed(4);
+                currentScreen.keyPressed(Column.COLUMN4);
                 break;
 
             case KeyboardEvent.KEY_SPACE:
@@ -78,4 +101,5 @@ public class Player implements KeyboardHandler {
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
     }
+
 }
