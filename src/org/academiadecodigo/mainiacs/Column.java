@@ -3,6 +3,7 @@ package org.academiadecodigo.mainiacs;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 public enum Column {
+
     COLUMN1(Color.BLUE, 100),
     COLUMN2(Color.GREEN, 200),
     COLUMN3(Color.ORANGE, 300),
