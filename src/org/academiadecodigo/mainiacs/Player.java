@@ -1,5 +1,8 @@
 package org.academiadecodigo.mainiacs;
 
+import org.academiadecodigo.mainiacs.Screen.Screen;
+import org.academiadecodigo.mainiacs.Screen.ScreenType;
+import org.academiadecodigo.mainiacs.Screen.Stage;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -44,8 +47,8 @@ public class Player implements KeyboardHandler {
 
     }
 
-    public void setStage(Stage currentStage) {
-        this.currentStage = currentStage;
+    public void setStage(Screen currentScreen) {
+        this.currentScreen = currentScreen;
     }
 
     @Override
