@@ -1,20 +1,17 @@
 package org.academiadecodigo.mainiacs;
 
+import org.academiadecodigo.mainiacs.Screen.Stage;
+import org.academiadecodigo.mainiacs.Screen.ScreenType;
+
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        Note note = new Note();
-        int i = 100;
-        while (i > 0) {
-            note.ellipse.draw();
 
-            Thread.sleep(24);
+        Game game = new Game();
+        game.start();
+        Player player = new Player(game);
 
-            note.ellipse.grow(1, 1);
+        Stage stage = new Stage(player,ScreenType.STAGE);
 
-            i--;
-        }
-
-        Counter counter = new Counter();
-        counter.getText();
+        stage.start();
     }
 }
