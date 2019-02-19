@@ -6,13 +6,12 @@ import org.academiadecodigo.mainiacs.Screen.ScreenType;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 
-        Note note = new Note();
-        int i = 100;
+        Game game = new Game();
+        game.start();
+        Player player = new Player(game);
 
-        Player player = new Player();
+        Stage stage = new Stage(player,ScreenType.STAGE);
 
-
-        Stage stage = new Stage(player, ScreenType.START_MENU);
         stage.start();
     }
 }

@@ -1,6 +1,5 @@
 package org.academiadecodigo.mainiacs;
 
-import org.academiadecodigo.mainiacs.Screen.Screen;
 import org.academiadecodigo.mainiacs.Screen.ScreenType;
 import org.academiadecodigo.mainiacs.Screen.Stage;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -11,10 +10,13 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 public class Player implements KeyboardHandler {
 
-    private Screen currentScreen;
+    private ScreenType currentScreen;
     private Game game;
+    private Stage stage;
 
-    Player(){
+    Player(Game game){
+
+        this.game = game;
 
         Keyboard keyboard = new Keyboard(this);
 
@@ -47,8 +49,12 @@ public class Player implements KeyboardHandler {
 
     }
 
-    public void setStage(Screen currentScreen) {
+    public void setCurrentScreen(ScreenType currentScreen) {
         this.currentScreen = currentScreen;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     @Override
@@ -57,12 +63,12 @@ public class Player implements KeyboardHandler {
 
         // Case main menu
 
-        if (currentScreen.getScreenType() == ScreenType.START_MENU ){
+        if (currentScreen == ScreenType.START_MENU ){
 
             switch (keyboardEvent.getKey()) {
 
                 case KeyboardEvent.KEY_1:
-                    game.start(Stage.stage1);
+                    game.start();
                     //TODO : escolher se é preciso fazer um enum StageType, ou inicializar com o Stage específico.
 
             }
@@ -78,19 +84,19 @@ public class Player implements KeyboardHandler {
             case KeyboardEvent.KEY_1:
 
                 //method stage
-                currentScreen.keyPressed(Column.COLUMN1);
+                stage.keyPressed(Column.COLUMN1);
                 break;
 
             case KeyboardEvent.KEY_2:
-                currentScreen.keyPressed(Column.COLUMN2);
+                stage.keyPressed(Column.COLUMN2);
                 break;
 
             case KeyboardEvent.KEY_3:
-                currentScreen.keyPressed(Column.COLUMN3);
+                stage.keyPressed(Column.COLUMN3);
                 break;
 
             case KeyboardEvent.KEY_4:
-                currentScreen.keyPressed(Column.COLUMN4);
+                stage.keyPressed(Column.COLUMN4);
                 break;
 
             case KeyboardEvent.KEY_SPACE:

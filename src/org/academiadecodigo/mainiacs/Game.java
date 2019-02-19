@@ -3,8 +3,12 @@ package org.academiadecodigo.mainiacs;
 import org.academiadecodigo.mainiacs.Screen.Stage;
 
 public class Game {
-    private Player player;
+    public Player player;
     private Stage[] stages;
+
+    public void start() {
+
+    }
 
 
 }

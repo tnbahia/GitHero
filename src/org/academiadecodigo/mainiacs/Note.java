@@ -9,18 +9,17 @@ public class Note{
     private Column column;
     private int y = 0; //fixo negativo sempre descer
     private boolean inTarget;
+    private boolean reachedEnd;
     private Ellipse ellipse;
-    private static final int SIZE = 50;
+    private static final int SIZE = 100;
 
 
 
-    public Note() throws InterruptedException {
+    public Note() {
         column = Column.values()[ (int) (Math.random() * Column.values().length) ];
         ellipse = new Ellipse(column.getX() - (SIZE/2.0), y, SIZE,SIZE );
         ellipse.setColor(column.getColor());
         show();
-        move();
-
     }
 
     public Column getColumn() {
@@ -51,20 +50,21 @@ public class Note{
 
     }
 
-    public void move () throws InterruptedException {
-        int yPosicaoAtual=y;
-
-        while ( yPosicaoAtual < Column.getColumnHeight()){
-
-            Thread.sleep(12);
-            ellipse.translate(0,1);
-            yPosicaoAtual++;
+    public void move () {
+        ellipse.translate(0,1);
+        y++;
+        if(y == Column.COLUMN_HEIGHT) {
+            reachedEnd = true;
+            hide();
         }
-        hide();
-
+        if (y>800 && y<900) {
+            inTarget = true;
+        }
     }
 
-
+    public boolean reachedEnd() {
+        return reachedEnd;
+    }
 }
 
 

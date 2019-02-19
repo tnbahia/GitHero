@@ -109,7 +109,12 @@ public class NoteList {
     public void moveNotes() {
         Node iterator = head.getNext();
         while (iterator != null) {
-            //((Note)iterator.getData()).move();
+            Note note = iterator.getData();
+            note.move();
+            if (note.reachedEnd()) {
+                note.hide();
+                remove(note);
+            }
             iterator = iterator.getNext();
         }
     }
@@ -119,11 +124,11 @@ public class NoteList {
         while (iterator != null) {
             Note note = iterator.getData();
 
-            if (note.getCol != col || !note.isInTarget()) {
+            if (note.getColumn() != col || !note.isInTarget()) {
                 iterator = iterator.getNext();
                 continue;
             }
-            note.delete();
+            note.hide();
             remove(note);
             return true;
         }

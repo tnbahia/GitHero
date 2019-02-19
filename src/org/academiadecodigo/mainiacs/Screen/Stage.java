@@ -1,28 +1,31 @@
 package org.academiadecodigo.mainiacs.Screen;
 
 import org.academiadecodigo.mainiacs.*;
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Stage extends Screen {
     //private Music music;
 
     private Counter counter = new Counter();
-    private int targetStartY = 300;
-    private int targetEndY = 400;
+    private int targetStartY = 800;
+    private int targetEndY = 900;
     private NoteList noteList;
 
     public Stage(Player player, ScreenType stageType) {
         super(stageType,player);
     }
 
-    public void start() {
+    public void start() throws InterruptedException {
         noteList = new NoteList();
-        player.setStage(this);
+        getPlayer().setStage(this);
         drawStage();
         while (true) {
-            while (noteList.size() < stageType.getDifficulty() * 2) {
+            while (noteList.size() < 5) {
                 getNewNote();
             }
             noteList.moveNotes();
+            Thread.sleep(2);
         }
     }
 
@@ -30,6 +33,10 @@ public class Stage extends Screen {
         getScreenType().getBackground().draw();
         counter.draw();
         Column.draw();
+        int screenWidth = getScreenType().getBackground().getWidth();
+        Rectangle target = new Rectangle(20,targetStartY,screenWidth-40,targetEndY-targetStartY);
+        target.setColor(Color.RED);
+        target.fill();
     }
 
     private void getNewNote() {
@@ -40,7 +47,7 @@ public class Stage extends Screen {
         if (noteList.noteInRange(col)) {
             counter.increase();
         } else {
-            counter.decrease();
+            //counter.decrease();
         }
     }
 }
