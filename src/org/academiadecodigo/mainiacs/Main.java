@@ -5,13 +5,13 @@ public class Main {
         Note note = new Note();
         int i = 100;
         while (i > 0) {
-            note.ellipse.draw();
+            //note.getEllipse().draw();
 
-            Thread.sleep(24);
+            //Thread.sleep(24);
 
-            note.ellipse.grow(1, 1);
+            //note.getEllipse().grow(1, 1);
 
-            i--;
+            //i--;
         }
 
         Counter counter = new Counter();
