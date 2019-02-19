@@ -15,6 +15,7 @@ public class Stage extends Screen {
     }
 
     public void start() {
+        noteList = new NoteList();
         player.setStage(this);
         drawStage();
         while (true) {
@@ -26,8 +27,9 @@ public class Stage extends Screen {
     }
 
     private void drawStage() {
-        stageType.getBackground().draw();
+        getScreenType().getBackground().draw();
         counter.draw();
+        Column.draw();
     }
 
     private void getNewNote() {

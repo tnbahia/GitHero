@@ -18,7 +18,7 @@ public class NoteList {
      *
      * @param data the element to add
      */
-    public void add(Object data) {
+    public void add(Note data) {
 
         Node node = new Node(data);
         Node iterator = head;
@@ -36,7 +36,7 @@ public class NoteList {
      * @param index the index of the element
      * @return the element
      */
-    public Object get(int index) {
+    public Note get(int index) {
 
         int counter = 0;
 
@@ -63,7 +63,7 @@ public class NoteList {
      * @param data element to search for
      * @return the index of the element, or -1 if the list does not contain element
      */
-    public int indexOf(Object data) {
+    public int indexOf(Note data) {
         if (head.getNext() == null) {
             return -1;
         }
@@ -85,7 +85,7 @@ public class NoteList {
      * @param data the element to remove
      * @return true if element was removed
      */
-    public boolean remove(Object data) {
+    public boolean remove(Note data) {
         Node iterator = head;
         if (iterator.getNext() == null) {
             return false;
@@ -117,8 +117,9 @@ public class NoteList {
     public boolean noteInRange(Column col) {
         Node iterator = head.getNext();
         while (iterator != null) {
-            Note note = (Note)iterator.getData();
-            if (!note.isInTarget()) {
+            Note note = iterator.getData();
+
+            if (note.getCol != col || !note.isInTarget()) {
                 iterator = iterator.getNext();
                 continue;
             }
@@ -131,19 +132,19 @@ public class NoteList {
 
     private class Node {
 
-        private Object data;
+        private Note data;
         private Node next;
 
-        public Node(Object data) {
+        public Node(Note data) {
             this.data = data;
             next = null;
         }
 
-        public Object getData() {
+        public Note getData() {
             return data;
         }
 
-        public void setData(Object data) {
+        public void setData(Note data) {
             this.data = data;
         }
 
