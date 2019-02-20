@@ -17,6 +17,7 @@ public class Stage extends Screen {
 
     public void start() throws InterruptedException {
         noteList = new NoteList();
+
         target = new Target();
         getPlayer().setStage(this);
         drawStage();
@@ -51,7 +52,7 @@ public class Stage extends Screen {
 
             counter.increase();
         } else {
-            counter.decrease();
+            //counter.decrease();
         }
     }
 }
