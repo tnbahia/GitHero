@@ -1,8 +1,9 @@
 package org.academiadecodigo.mainiacs;
 
+import org.academiadecodigo.mainiacs.Screen.Target;
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 
-public class Note{
+public class Note {
 
     //metodo move
 
@@ -14,10 +15,9 @@ public class Note{
     private static final int SIZE = 100;
 
 
-
     public Note() {
-        column = Column.values()[ (int) (Math.random() * Column.values().length) ];
-        ellipse = new Ellipse(column.getX() - (SIZE/2.0), y, SIZE,SIZE );
+        column = Column.values()[(int) (Math.random() * Column.values().length)];
+        ellipse = new Ellipse(column.getX() - (SIZE / 2.0), y, SIZE, SIZE);
         ellipse.setColor(column.getColor());
         show();
     }
@@ -50,15 +50,18 @@ public class Note{
 
     }
 
-    public void move () {
-        ellipse.translate(0,1);
+    public void move() {
+        ellipse.translate(0, 1);
         y++;
-        if(y == Column.COLUMN_HEIGHT) {
+        if (y == Column.COLUMN_HEIGHT) {
             reachedEnd = true;
             hide();
         }
-        if (y>800 && y<900) {
+        if (y + SIZE + 1 > Target.START_Y) {
             inTarget = true;
+        }
+        if (y > Target.END_Y) {
+            inTarget = false;
         }
     }
 

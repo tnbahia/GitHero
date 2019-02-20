@@ -8,8 +8,7 @@ public class Stage extends Screen {
     //private Music music;
 
     private Counter counter = new Counter();
-    private int targetStartY = 800;
-    private int targetEndY = 900;
+    private Target target;
     private NoteList noteList;
 
     public Stage(Player player, ScreenType stageType) {
@@ -18,12 +17,13 @@ public class Stage extends Screen {
 
     public void start() throws InterruptedException {
         noteList = new NoteList();
+        target = new Target();
         getPlayer().setStage(this);
         drawStage();
         while (true) {
             getNewNote();
             noteList.moveNotes();
-            Thread.sleep(2);
+            Thread.sleep(3);
         }
     }
 
@@ -31,10 +31,7 @@ public class Stage extends Screen {
         getScreenType().getBackground().draw();
         counter.draw();
         Column.draw();
-        int screenWidth = getScreenType().getBackground().getWidth();
-        Rectangle target = new Rectangle(20,targetStartY,screenWidth-40,targetEndY-targetStartY);
-        target.setColor(Color.RED);
-        target.fill();
+        target.draw();
     }
 
     private void getNewNote() {
@@ -43,7 +40,7 @@ public class Stage extends Screen {
             noteList.add(new Note());
             return;
         }
-        if (noteList.size() > 5 || last.getY() < 200) {
+        if (noteList.size() > 5 || last.getY() < 150) {
             return;
         }
         noteList.add(new Note());
@@ -51,9 +48,10 @@ public class Stage extends Screen {
 
     public void keyPressed(Column col) {
         if (noteList.noteInRange(col)) {
+
             counter.increase();
         } else {
-            //counter.decrease();
+            counter.decrease();
         }
     }
 }

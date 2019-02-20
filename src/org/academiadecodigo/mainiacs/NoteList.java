@@ -91,7 +91,6 @@ public class NoteList {
             Note note = iterator.getData();
             note.move();
             if (note.reachedEnd()) {
-                note.hide();
                 remove(note);
             }
             iterator = iterator.getNext();
