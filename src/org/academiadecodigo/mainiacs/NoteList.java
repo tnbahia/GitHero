@@ -1,6 +1,8 @@
 package org.academiadecodigo.mainiacs;
 
-public class NoteList {
+import java.util.LinkedList;
+
+public class NoteList extends LinkedList {
 
     private Node head;
     private int length = 0;

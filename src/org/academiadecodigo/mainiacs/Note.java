@@ -1,11 +1,10 @@
 package org.academiadecodigo.mainiacs;
 
+import org.academiadecodigo.mainiacs.Screen.Screen;
 import org.academiadecodigo.mainiacs.Screen.Target;
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 
 public class Note {
-
-    //metodo move
 
     private Column column;
     private int y = 0; //fixo negativo sempre descer
@@ -53,7 +52,7 @@ public class Note {
     public void move() {
         ellipse.translate(0, 1);
         y++;
-        if (y == Column.COLUMN_HEIGHT) {
+        if (y + SIZE == Screen.SCREEN_HEIGHT) {
             reachedEnd = true;
             hide();
         }

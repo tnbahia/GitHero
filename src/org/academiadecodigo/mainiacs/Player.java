@@ -11,12 +11,10 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 public class Player implements KeyboardHandler {
 
     private ScreenType currentScreen;
-    private Game game;
+    //private Game game;
     private Stage stage;
 
-    Player(Game game){
-
-        this.game = game;
+    Player(){
 
         Keyboard keyboard = new Keyboard(this);
 
@@ -68,12 +66,17 @@ public class Player implements KeyboardHandler {
             switch (keyboardEvent.getKey()) {
 
                 case KeyboardEvent.KEY_1:
-                    game.start();
-                    //TODO : escolher se é preciso fazer um enum StageType, ou inicializar com o Stage específico.
-
+                    Game.startStage(1);
+                    break;
+                case KeyboardEvent.KEY_2:
+                    Game.startStage(2);
+                    break;
+                case KeyboardEvent.KEY_3:
+                    Game.startStage(3);
+                    break;
+                default:
+                    Game.startStage(2);
             }
-
-            return;
         }
 
 
@@ -82,8 +85,6 @@ public class Player implements KeyboardHandler {
         switch (keyboardEvent.getKey()) {
 
             case KeyboardEvent.KEY_1:
-
-                //method stage
                 stage.keyPressed(Column.COLUMN1);
                 break;
 

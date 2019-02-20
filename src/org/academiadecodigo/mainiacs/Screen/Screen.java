@@ -1,14 +1,14 @@
 package org.academiadecodigo.mainiacs.Screen;
 
-import org.academiadecodigo.mainiacs.Player;
-
 public abstract class Screen {
-    private ScreenType screenType;
-    private Player player;
+    public static final double SCREEN_HEIGHT = 800;
 
-    public Screen(ScreenType screenType, Player player) {
+    private ScreenType screenType;
+    //private Player player;
+
+    public Screen(ScreenType screenType) {
         this.screenType = screenType;
-        this.player = player;
+        //this.player = player;
     }
 
     public abstract void start() throws InterruptedException;
@@ -17,7 +17,13 @@ public abstract class Screen {
         return screenType;
     }
 
-    public Player getPlayer() {
-        return player;
+    public void hide() {
+        screenType.getBackground().delete();
     }
+
+    public abstract void delete();
+
+    /*public Player getPlayer() {
+        return player;
+    }*/
 }

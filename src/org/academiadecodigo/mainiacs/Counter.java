@@ -1,6 +1,5 @@
 package org.academiadecodigo.mainiacs;
 
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 
 public class Counter extends Text {
@@ -8,7 +7,6 @@ public class Counter extends Text {
 
     public Counter(){
         super(700,50,"0");
-        grow(10,10);
     }
 
     public String getPoints() {
@@ -17,7 +15,7 @@ public class Counter extends Text {
     }
 
     public void increase() {
-        pointsNumber++;
+        pointsNumber += 100;
         setText();
     }
 
@@ -25,7 +23,7 @@ public class Counter extends Text {
         if (pointsNumber == 0) {
             return;
         } else {
-            pointsNumber--;
+            pointsNumber -= 20;
             setText();
         }
     }

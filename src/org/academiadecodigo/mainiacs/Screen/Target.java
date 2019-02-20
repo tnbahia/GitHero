@@ -4,8 +4,8 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Target {
-    public static final int START_Y = 750;
-    public static final int END_Y = 900;
+    public static final int START_Y = 600;
+    public static final int END_Y = 750;
     private Rectangle rectangle;
 
     public Target() {
