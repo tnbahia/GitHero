@@ -4,6 +4,7 @@ public class NoteList {
 
     private Node head;
     private int length = 0;
+    private Note lastAdded;
 
     public NoteList() {
         this.head = new Node(null);
@@ -13,11 +14,6 @@ public class NoteList {
         return length;
     }
 
-    /**
-     * Adds an element to the end of the list
-     *
-     * @param data the element to add
-     */
     public void add(Note data) {
 
         Node node = new Node(data);
@@ -28,14 +24,9 @@ public class NoteList {
         }
         iterator.setNext(node);
         length++;
+        lastAdded = data;
     }
 
-    /**
-     * Obtains an element by index
-     *
-     * @param index the index of the element
-     * @return the element
-     */
     public Note get(int index) {
 
         int counter = 0;
@@ -57,12 +48,6 @@ public class NoteList {
         return iterator.getData();
     }
 
-    /**
-     * Returns the index of the element in the list
-     *
-     * @param data element to search for
-     * @return the index of the element, or -1 if the list does not contain element
-     */
     public int indexOf(Note data) {
         if (head.getNext() == null) {
             return -1;
@@ -79,12 +64,6 @@ public class NoteList {
         return index;
     }
 
-    /**
-     * Removes an element from the list
-     *
-     * @param data the element to remove
-     * @return true if element was removed
-     */
     public boolean remove(Note data) {
         Node iterator = head;
         if (iterator.getNext() == null) {
@@ -133,6 +112,10 @@ public class NoteList {
             return true;
         }
         return false;
+    }
+
+    public Note getLastAdded() {
+        return lastAdded;
     }
 
     private class Node {

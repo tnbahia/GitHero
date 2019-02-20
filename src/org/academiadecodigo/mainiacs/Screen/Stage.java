@@ -21,9 +21,7 @@ public class Stage extends Screen {
         getPlayer().setStage(this);
         drawStage();
         while (true) {
-            while (noteList.size() < 5) {
-                getNewNote();
-            }
+            getNewNote();
             noteList.moveNotes();
             Thread.sleep(2);
         }
@@ -40,6 +38,14 @@ public class Stage extends Screen {
     }
 
     private void getNewNote() {
+        Note last = noteList.getLastAdded();
+        if (last == null) {
+            noteList.add(new Note());
+            return;
+        }
+        if (noteList.size() > 5 || last.getY() < 200) {
+            return;
+        }
         noteList.add(new Note());
     }
 
