@@ -17,7 +17,7 @@ public enum Column {
 
     Column(Color color) {
         this.color = color;
-        this.x = Screen.SCREEN_WIDTH * (this.ordinal()+1);
+        this.x = Screen.SCREEN_WIDTH/5 * (this.ordinal()+1);
 
     }
 

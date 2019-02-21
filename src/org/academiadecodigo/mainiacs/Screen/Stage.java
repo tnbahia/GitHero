@@ -14,7 +14,7 @@ public class Stage extends Screen {
 
     public Stage(ScreenType screenType) {
         super(screenType);
-        String link = "http://st2.depositphotos.com/1813786/7041/v/950/depositphotos_70414397-stock-illustration-vintage-label-rock-and-roll.jpg";
+        String link = "http://rndr.juniqe-production.juniqe.com/media/catalog/product/cache/x800/675/32/675-32-202X-Black.jpg";
         background = new Picture(10, 10, link);
         double grow = Screen.SCREEN_HEIGHT - background.getHeight();
         background.grow(0,grow);
