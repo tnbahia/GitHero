@@ -6,7 +6,7 @@ public class Counter extends Text {
     private int pointsNumber = 0;
 
     public Counter(){
-        super(700,50,"0");
+        super(50,50,"0");
     }
 
     public int getPoints() {

@@ -1,20 +1,23 @@
 package org.academiadecodigo.mainiacs;
 
 import org.academiadecodigo.mainiacs.Screen.Screen;
+import org.academiadecodigo.mainiacs.Screen.Target;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Line;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public enum Column {
 
-    COLUMN1(Color.BLUE, "blue-note.png"),
-    COLUMN2(Color.GREEN, "green-note.png"),
-    COLUMN3(Color.ORANGE, "orange-note.png"),
-    COLUMN4(Color.RED, "red-note.png");
+    COLUMN1(Color.BLUE, "botRegBlue.png"),
+    COLUMN2(Color.GREEN, "botRegGreen.png"),
+    COLUMN3(Color.YELLOW, "botRegYellow.png"),
+    COLUMN4(Color.RED, "botRegRed.png");
 
     private Color color;
     private double x;
     private String notePic;
+    private String[] buttons = new String[3];
+
 
 
     Column(Color color, String picLink) {
@@ -25,6 +28,10 @@ public enum Column {
 
     public double getX() {
         return x;
+    }
+
+    public String[] getButtons() {
+        return buttons;
     }
 
     public Color getColor() {
@@ -51,6 +58,23 @@ public enum Column {
         col2.draw();
         col3.draw();
         col4.draw();
+
+        Picture pic1 = new Picture(Column.COLUMN1.getX()- 90, Target.START_Y-22, "botBarBlue.png");
+        pic1.grow(Note.WIDTH_OF_NOTE-pic1.getWidth(),Note.HEIGHT_OF_NOTE-pic1.getHeight());
+
+        Picture pic2 = new Picture(Column.COLUMN2.getX()- 90, Target.START_Y-22, "botBarGreen.png");
+        pic2.grow(Note.WIDTH_OF_NOTE-pic2.getWidth(),Note.HEIGHT_OF_NOTE-pic2.getHeight());
+
+        Picture pic3 = new Picture(Column.COLUMN3.getX()- 90, Target.START_Y-22, "botBarYellow.png");
+        pic3.grow(Note.WIDTH_OF_NOTE-pic3.getWidth(),Note.HEIGHT_OF_NOTE-pic3.getHeight());
+
+        Picture pic4 = new Picture(Column.COLUMN4.getX()- 90, Target.START_Y-22, "botBarRed.png");
+        pic4.grow(Note.WIDTH_OF_NOTE-pic4.getWidth(),Note.HEIGHT_OF_NOTE-pic4.getHeight());
+
+        pic1.draw();
+        pic2.draw();
+        pic3.draw();
+        pic4.draw();
 
     }
 
