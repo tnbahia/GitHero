@@ -15,7 +15,7 @@ public class Stage extends Screen {
     public Stage(ScreenType screenType) {
         super(screenType);
         String link = "http://rndr.juniqe-production.juniqe.com/media/catalog/product/cache/x800/675/32/675-32-202X-Black.jpg";
-        background = new Picture(0, 10, link);
+        background = new Picture(10, 10, link);
     }
 
     public void start() throws InterruptedException {
