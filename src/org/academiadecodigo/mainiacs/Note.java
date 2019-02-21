@@ -56,7 +56,7 @@ public class Note {
             inTarget = false;
             return;
         }
-        if (y + SIZE_OF_NOTE + 1 > Target.START_Y) {
+        if (y + SIZE_OF_NOTE > Target.START_Y) {
             inTarget = true;
         }
     }
