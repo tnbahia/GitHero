@@ -25,7 +25,7 @@ public class StartMenu extends Screen {
 
     @Override
     public void delete() {
-        Canvas.getInstance().hide(background);
+        background.delete();
     }
 
     @Override

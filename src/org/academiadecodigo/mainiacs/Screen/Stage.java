@@ -3,6 +3,7 @@ package org.academiadecodigo.mainiacs.Screen;
 import org.academiadecodigo.mainiacs.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Stage extends Screen {
@@ -11,8 +12,8 @@ public class Stage extends Screen {
     private Target target;
     private LinkedList<Note> noteList;
     private Picture background;
+    private int noteCount;
     private static Music music = new Music();
-
 
     public Stage(ScreenType screenType) {
         super(screenType);
@@ -22,18 +23,50 @@ public class Stage extends Screen {
         background.grow(0, grow);
     }
 
-    public void start() throws InterruptedException {
+    public void start() {
         noteList = new LinkedList<>();
         target = new Target();
         drawStage();
+        int sleepMillis = 3;
+        int sleepNanos = 999999;
+
         while (true) {
-            //int sleep = counter.getPoints() > 1500 ? 1 : counter.getPoints() > 1000 ? 2 : counter.getPoints() > 500 ? 3 : 4;
-            Thread.sleep(counter.getPoints() > 1500 ? 1 : counter.getPoints() > 1000 ? 2 : counter.getPoints() > 500 ? 3 : 4);
-            getNewNote();
-            for (Note note : noteList) {
-                note.move();
+            //int sleepNanos = 10000 - counter.getPoints();
+            //int sleepMillis = counter.getPoints() > 2000 ? 1 : counter.getPoints() > 1000 ? 2 : counter.getPoints() > 500 ? 3 : 4;
+            //int sleepNanos = 999999 - counter.getPoints()*100;
+            sleepNanos -= 100;
+            if (sleepNanos <= 0) {
+                sleepNanos = 999999;
+                if (sleepMillis > 1) {
+                    sleepMillis--;
+                }
             }
-            noteList.removeIf(note -> note.reachedEnd());
+
+            //System.out.println(sleepNanos);
+            try {
+                Thread.sleep(sleepMillis, sleepNanos);
+            } catch (InterruptedException e) {
+                System.out.println("IN START EXCEPTION");
+            }
+
+            getNewNote();
+
+            Iterator<Note> it = noteList.listIterator();
+
+            while (it.hasNext()) {
+                Note n = it.next();
+
+                n.move();
+
+                if (n.reachedEnd()) {
+                    it.remove();
+                }
+            }
+
+            //for (Note note : noteList) {
+            //    note.move();
+            //}
+            //noteList.removeIf(note -> note.reachedEnd());
         }
     }
 
