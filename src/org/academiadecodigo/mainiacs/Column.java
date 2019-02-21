@@ -6,22 +6,22 @@ import org.academiadecodigo.simplegraphics.graphics.Line;
 
 public enum Column {
 
-    COLUMN1(Color.BLUE, 150),
-    COLUMN2(Color.GREEN, 300),
-    COLUMN3(Color.ORANGE, 450),
-    COLUMN4(Color.RED, 600);
+    COLUMN1(Color.BLUE),
+    COLUMN2(Color.GREEN),
+    COLUMN3(Color.ORANGE),
+    COLUMN4(Color.RED);
 
     private Color color;
-    private int x;
+    private double x;
 
 
-    Column(Color color, int x) {
+    Column(Color color) {
         this.color = color;
-        this.x = x;
+        this.x = Screen.SCREEN_WIDTH * (this.ordinal()+1);
 
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
@@ -30,6 +30,7 @@ public enum Column {
     }
 
     public static void draw() {
+
         Line col1 = new Line(Column.COLUMN1.getX(),0,Column.COLUMN1.getX(),Screen.SCREEN_HEIGHT);
         Line col2 = new Line(Column.COLUMN2.getX(),0,Column.COLUMN2.getX(),Screen.SCREEN_HEIGHT);
         Line col3 = new Line(Column.COLUMN3.getX(),0,Column.COLUMN3.getX(),Screen.SCREEN_HEIGHT);

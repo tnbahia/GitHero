@@ -99,13 +99,11 @@ public class Player implements KeyboardHandler {
                 case KeyboardEvent.KEY_4:
                     stage.keyPressed(Column.COLUMN4);
                     break;
-
-                case KeyboardEvent.KEY_SPACE:
-
+                case KeyboardEvent.KEY_SHIFT:
+                    // TODO : MAIS QUE UMA TECLA, confirmar se shift pressed -> confirmar se as teclas pressed tem notas na coluna designada
                     break;
             }
         }
-
     }
 
     @Override

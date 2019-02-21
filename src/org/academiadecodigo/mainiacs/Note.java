@@ -11,12 +11,12 @@ public class Note {
     private boolean inTarget;
     private boolean reachedEnd;
     private Ellipse ellipse;
-    private static final int SIZE = 100;
+    public static final int SIZE_OF_NOTE = 70;
 
 
     public Note() {
         column = Column.values()[(int) (Math.random() * Column.values().length)];
-        ellipse = new Ellipse(column.getX() - (SIZE / 2.0), y, SIZE, SIZE);
+        ellipse = new Ellipse(column.getX() - (SIZE_OF_NOTE / 2.0), y, SIZE_OF_NOTE, SIZE_OF_NOTE);
         ellipse.setColor(column.getColor());
         show();
     }
@@ -52,11 +52,11 @@ public class Note {
     public void move() {
         ellipse.translate(0, 1);
         y++;
-        if (y + SIZE == Screen.SCREEN_HEIGHT) {
+        if (y + SIZE_OF_NOTE == Screen.SCREEN_HEIGHT) {
             reachedEnd = true;
             hide();
         }
-        if (y + SIZE + 1 > Target.START_Y) {
+        if (y + SIZE_OF_NOTE + 1 > Target.START_Y) {
             inTarget = true;
         }
         if (y > Target.END_Y) {
