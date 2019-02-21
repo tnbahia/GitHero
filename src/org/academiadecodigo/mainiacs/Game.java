@@ -10,6 +10,7 @@ public class Game {
     public static Player player;
     private static Screen[] screens = new Screen[4];
 
+
     public static void main(String[] args) throws InterruptedException{
         screens[0] = new StartMenu();
         for (int i = 1; i < screens.length; i++) {
@@ -17,6 +18,7 @@ public class Game {
         }
         player = new Player();
         init();
+
     }
 
 
@@ -33,6 +35,8 @@ public class Game {
         System.out.println(menu.toString());
         menu.delete();
         player.setCurrentScreen(ScreenType.STAGE);
+
         //screens[stageNumber].start();
+
     }
 }

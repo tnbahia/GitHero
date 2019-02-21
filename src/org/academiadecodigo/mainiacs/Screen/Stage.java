@@ -11,6 +11,8 @@ public class Stage extends Screen {
     private Target target;
     private LinkedList<Note> noteList;
     private Picture background;
+    private static Music music = new Music();
+
 
     public Stage(ScreenType screenType) {
         super(screenType);
@@ -37,10 +39,12 @@ public class Stage extends Screen {
 
     private void drawStage() {
         background.draw();
+        music.startMusic();
         counter.draw();
         Column.draw();
         target.draw();
         counter.grow(20, 20);
+
     }
 
     private void getNewNote() {
