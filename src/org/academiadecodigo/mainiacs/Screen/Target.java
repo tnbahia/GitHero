@@ -5,32 +5,23 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Target {
-    public static int START_Y;
-    public static int END_Y;
-    private static final int BORDER = 25;
+
+    private static final int BORDER = 15;
     private static final int BOTTOM_BORDER = 40;
-    public static final int HEIGHT_TARGET = Note.SIZE_OF_NOTE + BORDER;
-
-    //public static final int
-
+    public static final int HEIGHT_TARGET = Note.WIDTH_OF_NOTE + BORDER;
+    public static final int START_Y = Stage.getBackground().getHeight() - (HEIGHT_TARGET*2) - BOTTOM_BORDER;
+    public static final int END_Y = START_Y + HEIGHT_TARGET;
     private Rectangle rectangle;
 
     public Target() {
-        int screenWidth = ScreenType.STAGE.getBackground().getWidth();
-        int screenHeight = ScreenType.STAGE.getBackground().getHeight();
-
-        START_Y = screenHeight - (HEIGHT_TARGET*2) - BOTTOM_BORDER;
-        END_Y = START_Y + HEIGHT_TARGET;
-
-        //int rectHeight = END_Y - START_Y;
-        rectangle = new Rectangle((BORDER*2),screenHeight - (HEIGHT_TARGET*2) - BOTTOM_BORDER,screenWidth - (BORDER*3),HEIGHT_TARGET);
-
-
+        int targetWidth = Stage.getBackground().getWidth() - (BORDER*3);
+        rectangle = new Rectangle((BORDER*2),START_Y,targetWidth,HEIGHT_TARGET);
+        rectangle.setColor(Color.LIGHT_GRAY);
     }
 
     public void setColor(){
-        int counter;
-        counter = (int) (Math.random() * 100);
+
+        int counter = (int) (Math.random() * 100);
 
         if(counter <= 10){
             rectangle.setColor(Color.GREEN);
@@ -50,10 +41,10 @@ public class Target {
             rectangle.setColor(Color.YELLOW);
             draw();
         }
+
     }
 
     public void draw() {
-
         rectangle.fill();
     }
 }
