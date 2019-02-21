@@ -2,8 +2,6 @@ package org.academiadecodigo.mainiacs.Screen;
 
 import org.academiadecodigo.mainiacs.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-
-import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Stage extends Screen {
@@ -11,10 +9,9 @@ public class Stage extends Screen {
     private Counter counter = new Counter();
     private Target target;
     private LinkedList<Note> noteList;
-
     private static Picture background;
-
     private static Music music = new Music();
+    private int streak;
 
     public Stage(ScreenType screenType) {
         super(screenType);
@@ -49,19 +46,12 @@ public class Stage extends Screen {
 
             getNewNote();
 
-            Iterator<Note> it = noteList.listIterator();
-
-            while (it.hasNext()) {
-                Note n = it.next();
-
-                n.move();
-
-                if (n.reachedEnd()) {
-                    it.remove();
-                }
+            for (Note note: noteList) {
+                note.move();
             }
+            noteList.removeIf(note -> note.reachedEnd());
 
-            if (counter.getPoints() != 0 && counter.getPoints()%50 == 0) {
+            if (streak > 10) {
                 target.setColor();
             }
 
@@ -76,8 +66,6 @@ public class Stage extends Screen {
         target.draw();
         Column.draw();
         counter.grow(20, 20);
-        target.setColor();
-
     }
 
     private void getNewNote() {
@@ -100,10 +88,12 @@ public class Stage extends Screen {
             }
             if (note.isInTarget()) {
                 counter.increase();
-                note.hide();
+                streak++;
+                note.hit();
                 return;
             }
         }
+        streak = 0;
         counter.decrease();
     }
 

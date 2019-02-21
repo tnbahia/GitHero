@@ -16,6 +16,7 @@ public enum Column {
     private Color color;
     private double x;
     private String notePic;
+    private String[] buttons = new String[3];
 
 
 
@@ -27,6 +28,10 @@ public enum Column {
 
     public double getX() {
         return x;
+    }
+
+    public String[] getButtons() {
+        return buttons;
     }
 
     public Color getColor() {
