@@ -1,53 +1,82 @@
 package org.academiadecodigo.mainiacs.Screen;
 
 import org.academiadecodigo.mainiacs.*;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
+
+import java.util.LinkedList;
 
 public class Stage extends Screen {
-    //private Music music;
 
     private Counter counter = new Counter();
-    private int targetStartY = 800;
-    private int targetEndY = 900;
-    private NoteList noteList;
+    private Target target;
+    private LinkedList<Note> noteList;
+    private Picture background;
 
-    public Stage(Player player, ScreenType stageType) {
-        super(stageType,player);
+    public Stage(ScreenType screenType) {
+        super(screenType);
+        String link = "stage-background.jpg";
+        background = new Picture(10, 10, link);
+        double grow = Screen.SCREEN_HEIGHT - background.getHeight();
+        background.grow(0, grow);
     }
 
     public void start() throws InterruptedException {
-        noteList = new NoteList();
-        getPlayer().setStage(this);
+        noteList = new LinkedList<>();
+        target = new Target();
         drawStage();
         while (true) {
-            while (noteList.size() < 5) {
-                getNewNote();
+            //int sleep = counter.getPoints() > 1500 ? 1 : counter.getPoints() > 1000 ? 2 : counter.getPoints() > 500 ? 3 : 4;
+            Thread.sleep(counter.getPoints() > 1500 ? 1 : counter.getPoints() > 1000 ? 2 : counter.getPoints() > 500 ? 3 : 4);
+            getNewNote();
+            for (Note note : noteList) {
+                note.move();
             }
-            noteList.moveNotes();
-            Thread.sleep(2);
+            noteList.removeIf(note -> note.reachedEnd());
         }
     }
 
     private void drawStage() {
-        getScreenType().getBackground().draw();
+        background.draw();
         counter.draw();
         Column.draw();
-        int screenWidth = getScreenType().getBackground().getWidth();
-        Rectangle target = new Rectangle(20,targetStartY,screenWidth-40,targetEndY-targetStartY);
-        target.setColor(Color.RED);
-        target.fill();
+        target.draw();
+        counter.grow(20, 20);
     }
 
     private void getNewNote() {
+        Note last = noteList.peekLast();
+        if (last == null) {
+            noteList.add(new Note());
+            return;
+        }
+        int distanceToLast = (int) (Math.random() * 700 + 150);
+        if (noteList.size() >= 5 || last.getY() < distanceToLast) {
+            return;
+        }
         noteList.add(new Note());
     }
 
     public void keyPressed(Column col) {
-        if (noteList.noteInRange(col)) {
-            counter.increase();
-        } else {
-            //counter.decrease();
+        for (Note note : noteList) {
+            if (note.getColumn() != col) {
+                continue;
+            }
+            if (note.isInTarget()) {
+                counter.increase();
+                note.hide();
+                return;
+            }
         }
+        counter.decrease();
+    }
+
+    @Override
+    public void delete() {
+        //background.delete();
+    }
+
+    @Override
+    public String toString() {
+        return "Stage";
     }
 }

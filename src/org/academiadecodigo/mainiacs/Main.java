@@ -3,7 +3,7 @@ package org.academiadecodigo.mainiacs;
 import org.academiadecodigo.mainiacs.Screen.Stage;
 import org.academiadecodigo.mainiacs.Screen.ScreenType;
 
-public class Main {
+/*public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         Game game = new Game();
@@ -15,3 +15,4 @@ public class Main {
         stage.start();
     }
 }
+*/

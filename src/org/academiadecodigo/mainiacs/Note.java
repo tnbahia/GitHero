@@ -1,24 +1,23 @@
 package org.academiadecodigo.mainiacs;
 
-import org.academiadecodigo.simplegraphics.graphics.Ellipse;
+import org.academiadecodigo.mainiacs.Screen.Screen;
+import org.academiadecodigo.mainiacs.Screen.Target;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Note{
-
-    //metodo move
+public class Note {
 
     private Column column;
     private int y = 0; //fixo negativo sempre descer
     private boolean inTarget;
     private boolean reachedEnd;
-    private Ellipse ellipse;
-    private static final int SIZE = 100;
-
+    private Picture pic;
+    public static final int SIZE_OF_NOTE = 50;
 
 
     public Note() {
-        column = Column.values()[ (int) (Math.random() * Column.values().length) ];
-        ellipse = new Ellipse(column.getX() - (SIZE/2.0), y, SIZE,SIZE );
-        ellipse.setColor(column.getColor());
+        column = Column.values()[(int) (Math.random() * Column.values().length)];
+        pic = new Picture(column.getX(),y,column.getNotePic());
+        pic.translate(-pic.getWidth()/2.0,0);
         show();
     }
 
@@ -35,29 +34,29 @@ public class Note{
         return inTarget;
     }
 
-    public Ellipse getEllipse() {
-        return ellipse;
-    }
-
-
     public void show() {
-        ellipse.fill();
+        pic.draw();
 
     }
 
     public void hide() {
-        ellipse.delete();
+        pic.delete();
 
     }
 
-    public void move () {
-        ellipse.translate(0,1);
+    public void move() {
+        pic.translate(0, 1);
         y++;
-        if(y == Column.COLUMN_HEIGHT) {
+        if (y + SIZE_OF_NOTE == Screen.SCREEN_HEIGHT) {
             reachedEnd = true;
             hide();
+            return;
         }
-        if (y>800 && y<900) {
+        if (y > Target.END_Y) {
+            inTarget = false;
+            return;
+        }
+        if (y + SIZE_OF_NOTE + 1 > Target.START_Y) {
             inTarget = true;
         }
     }
