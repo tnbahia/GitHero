@@ -31,9 +31,7 @@ public class Stage extends Screen {
         int sleepNanos = 999999;
 
         while (true) {
-            //int sleepNanos = 10000 - counter.getPoints();
-            //int sleepMillis = counter.getPoints() > 2000 ? 1 : counter.getPoints() > 1000 ? 2 : counter.getPoints() > 500 ? 3 : 4;
-            //int sleepNanos = 999999 - counter.getPoints()*100;
+
             sleepNanos -= 100;
             if (sleepNanos <= 0) {
                 sleepNanos = 999999;
@@ -42,7 +40,6 @@ public class Stage extends Screen {
                 }
             }
 
-            //System.out.println(sleepNanos);
             try {
                 Thread.sleep(sleepMillis, sleepNanos);
             } catch (InterruptedException e) {
@@ -63,14 +60,14 @@ public class Stage extends Screen {
                 }
             }
 
-            //for (Note note : noteList) {
-            //    note.move();
-            //}
-            //noteList.removeIf(note -> note.reachedEnd());
+            if (counter.getPoints() != 0 && counter.getPoints()%50 == 0) {
+                target.setColor();
+            }
+
         }
     }
 
-    private void drawStage() throws InterruptedException{
+    private void drawStage() {
         background.draw();
         music.startMusic();
         counter.draw();
