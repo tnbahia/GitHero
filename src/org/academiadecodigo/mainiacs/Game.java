@@ -22,9 +22,9 @@ public class Game {
 
     public static void init() throws InterruptedException {
 
-        player.setCurrentScreen(ScreenType.START_MENU);
+        player.setCurrentScreen(ScreenType.STAGE);
         player.setStage((Stage) screens[1]);
-        screens[0].start();
+        screens[1].start();
 
     }
 
@@ -33,6 +33,6 @@ public class Game {
         System.out.println(menu.toString());
         menu.delete();
         player.setCurrentScreen(ScreenType.STAGE);
-        screens[stageNumber].start();
+        //screens[stageNumber].start();
     }
 }

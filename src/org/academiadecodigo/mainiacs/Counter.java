@@ -9,13 +9,12 @@ public class Counter extends Text {
         super(700,50,"0");
     }
 
-    public String getPoints() {
-        String points = ((Integer)pointsNumber).toString();
-        return points;
+    public int getPoints() {
+        return pointsNumber;
     }
 
     public void increase() {
-        pointsNumber += 100;
+        pointsNumber += 50;
         setText();
     }
 
@@ -23,13 +22,13 @@ public class Counter extends Text {
         if (pointsNumber == 0) {
             return;
         } else {
-            pointsNumber -= 20;
+            pointsNumber -= 10;
             setText();
         }
     }
 
     public void setText() {
-        super.setText((getPoints()));
+        super.setText((((Integer)pointsNumber).toString()));
     }
 
 

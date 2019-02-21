@@ -3,22 +3,24 @@ package org.academiadecodigo.mainiacs;
 import org.academiadecodigo.mainiacs.Screen.Screen;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Line;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public enum Column {
 
-    COLUMN1(Color.BLUE),
-    COLUMN2(Color.GREEN),
-    COLUMN3(Color.ORANGE),
-    COLUMN4(Color.RED);
+    COLUMN1(Color.BLUE, "blue-note.png"),
+    COLUMN2(Color.GREEN, "green-note.png"),
+    COLUMN3(Color.ORANGE, "orange-note.png"),
+    COLUMN4(Color.RED, "red-note.png");
 
     private Color color;
     private double x;
+    private String notePic;
 
 
-    Column(Color color) {
+    Column(Color color, String picLink) {
         this.color = color;
         this.x = Screen.SCREEN_WIDTH/5 * (this.ordinal()+1);
-
+        notePic = picLink;
     }
 
     public double getX() {
@@ -27,6 +29,10 @@ public enum Column {
 
     public Color getColor() {
         return color;
+    }
+
+    public String getNotePic() {
+        return notePic;
     }
 
     public static void draw() {

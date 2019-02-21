@@ -5,11 +5,12 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Target {
-    public static final int START_Y = 600;
-    public static final int END_Y = 750;
+    public static int START_Y;
+    public static int END_Y;
     private static final int BORDER = 15;
     private static final int BOTTOM_BORDER = 40;
     public static final int HEIGHT_TARGET = Note.SIZE_OF_NOTE + BORDER;
+    //public static final int
 
     private Rectangle rectangle;
 
@@ -17,8 +18,10 @@ public class Target {
         int screenWidth = ScreenType.STAGE.getBackground().getWidth();
         int screenHeight = ScreenType.STAGE.getBackground().getHeight();
 
+        START_Y = screenHeight - (HEIGHT_TARGET*2) - BOTTOM_BORDER;
+        END_Y = START_Y + HEIGHT_TARGET;
 
-        int rectHeight = END_Y - START_Y;
+        //int rectHeight = END_Y - START_Y;
         rectangle = new Rectangle((BORDER*2),screenHeight - (HEIGHT_TARGET*2) - BOTTOM_BORDER,screenWidth - (BORDER*3),HEIGHT_TARGET);
         rectangle.setColor(Color.LIGHT_GRAY);
     }
