@@ -15,7 +15,7 @@ public class Stage extends Screen {
 
     public Stage(ScreenType screenType) {
         super(screenType);
-        String link = "stage-background.jpg";
+        String link = "backgroundAl.jpg";
         background = new Picture(10, 10, link);
         double grow = Screen.SCREEN_HEIGHT - background.getHeight();
         background.grow(0, grow);
