@@ -10,7 +10,7 @@ public class Stage extends Screen {
     private Counter counter = new Counter();
     private Target target;
     private LinkedList<Note> noteList;
-    private Picture background;
+    private static Picture background;
     private static Music music = new Music();
 
 
@@ -24,7 +24,7 @@ public class Stage extends Screen {
 
     public void start() throws InterruptedException {
         noteList = new LinkedList<>();
-        target = new Target();
+
         drawStage();
         while (true) {
             //int sleep = counter.getPoints() > 1500 ? 1 : counter.getPoints() > 1000 ? 2 : counter.getPoints() > 500 ? 3 : 4;
@@ -41,8 +41,9 @@ public class Stage extends Screen {
         background.draw();
         music.startMusic();
         counter.draw();
-        Column.draw();
+        target = new Target();
         target.draw();
+        Column.draw();
         counter.grow(20, 20);
 
     }
@@ -82,5 +83,9 @@ public class Stage extends Screen {
     @Override
     public String toString() {
         return "Stage";
+    }
+
+    public static Picture getBackground(){
+        return background;
     }
 }

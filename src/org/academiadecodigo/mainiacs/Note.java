@@ -11,13 +11,15 @@ public class Note {
     private boolean inTarget;
     private boolean reachedEnd;
     private Picture pic;
-    public static final int SIZE_OF_NOTE = 50;
+    public static final int WIDTH_OF_NOTE = 50;
+    public static final int HEIGHT_OF_NOTE = 90;
 
 
     public Note() {
         column = Column.values()[(int) (Math.random() * Column.values().length)];
         pic = new Picture(column.getX(),y,column.getNotePic());
         pic.translate(-pic.getWidth()/2.0,0);
+        pic.grow(WIDTH_OF_NOTE-pic.getWidth(),HEIGHT_OF_NOTE-pic.getHeight());
         show();
     }
 
@@ -47,7 +49,7 @@ public class Note {
     public void move() {
         pic.translate(0, 1);
         y++;
-        if (y + SIZE_OF_NOTE == Screen.SCREEN_HEIGHT) {
+        if (y + HEIGHT_OF_NOTE == Screen.SCREEN_HEIGHT) {
             reachedEnd = true;
             hide();
             return;
@@ -56,7 +58,7 @@ public class Note {
             inTarget = false;
             return;
         }
-        if (y + SIZE_OF_NOTE + 1 > Target.START_Y) {
+        if (y + HEIGHT_OF_NOTE + 1 > Target.START_Y) {
             inTarget = true;
         }
     }
