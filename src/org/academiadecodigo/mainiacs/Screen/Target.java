@@ -28,36 +28,28 @@ public class Target {
 
     }
 
-    public void setColor() throws InterruptedException{
+    public void setColor(){
+        int counter;
+        counter = (int) (Math.random() * 100);
 
-        int counter = 0;
-        while(true){
-            counter = (int) (Math.random() * 100);
-            if(counter <= 10){
-                rectangle.setColor(Color.GREEN);
-                Thread.sleep(300);
-                draw();
-                continue;
-            }
-            if(counter <= 40){
-                rectangle.setColor(Color.BLUE);
-                Thread.sleep(300);
-                draw();
-                continue;
-            }
-            if(counter <= 70){
-                rectangle.setColor(Color.MAGENTA);
-                Thread.sleep(300);
-                draw();
-            }
-            else {
-                rectangle.setColor(Color.YELLOW);
-                Thread.sleep(300);
-                draw();
-
-            }
+        if(counter <= 10){
+            rectangle.setColor(Color.GREEN);
+            draw();
+            return;
         }
-
+        if(counter <= 40){
+            rectangle.setColor(Color.BLUE);
+            draw();
+            return;
+        }
+        if(counter <= 70){
+            rectangle.setColor(Color.MAGENTA);
+            draw();
+        }
+        else {
+            rectangle.setColor(Color.YELLOW);
+            draw();
+        }
     }
 
     public void draw() {
