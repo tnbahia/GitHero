@@ -25,8 +25,8 @@ public class Stage extends Screen {
         target = new Target();
         drawStage();
         while (true) {
-            int sleep = counter.getPoints() > 3000 ? 1 : counter.getPoints() > 2000 ? 2 : counter.getPoints() > 1000 ? 3 : 4;
-            Thread.sleep(sleep);
+            int sleep = counter.getPoints() > 1500 ? 1 : counter.getPoints() > 1000 ? 2 : counter.getPoints() > 500 ? 3 : 4;
+            Thread.sleep(2,1000-counter.getPoints());
             getNewNote();
             for (Note note : noteList) {
                 note.move();
