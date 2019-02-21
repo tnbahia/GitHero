@@ -12,7 +12,6 @@ public class Stage extends Screen {
     private Target target;
     private LinkedList<Note> noteList;
     private Picture background;
-    private int noteCount;
     private static Music music = new Music();
 
     public Stage(ScreenType screenType) {
@@ -28,13 +27,13 @@ public class Stage extends Screen {
         target = new Target();
         drawStage();
         int sleepMillis = 3;
-        int sleepNanos = 999999;
+        int sleepNanos = 999900;
 
         while (true) {
 
             sleepNanos -= 100;
             if (sleepNanos <= 0) {
-                sleepNanos = 999999;
+                sleepNanos = 999900;
                 if (sleepMillis > 1) {
                     sleepMillis--;
                 }
@@ -60,7 +59,7 @@ public class Stage extends Screen {
                 }
             }
 
-            if (counter.getPoints() != 0 && counter.getPoints()%50 == 0) {
+            if (sleepNanos % 10000 == 0) {
                 target.setColor();
             }
 
