@@ -35,12 +35,12 @@ public class Stage extends Screen {
         }
     }
 
-    private void drawStage() {
+    private void drawStage() throws InterruptedException{
         background.draw();
         counter.draw();
         Column.draw();
-        target.draw();
         counter.grow(20, 20);
+        target.setColor();
     }
 
     private void getNewNote() {

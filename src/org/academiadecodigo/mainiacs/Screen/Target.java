@@ -7,9 +7,10 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 public class Target {
     public static int START_Y;
     public static int END_Y;
-    private static final int BORDER = 15;
+    private static final int BORDER = 25;
     private static final int BOTTOM_BORDER = 40;
     public static final int HEIGHT_TARGET = Note.SIZE_OF_NOTE + BORDER;
+
     //public static final int
 
     private Rectangle rectangle;
@@ -23,10 +24,44 @@ public class Target {
 
         //int rectHeight = END_Y - START_Y;
         rectangle = new Rectangle((BORDER*2),screenHeight - (HEIGHT_TARGET*2) - BOTTOM_BORDER,screenWidth - (BORDER*3),HEIGHT_TARGET);
-        rectangle.setColor(Color.LIGHT_GRAY);
+
+
+    }
+
+    public void setColor() throws InterruptedException{
+
+        int counter = 0;
+        while(true){
+            counter = (int) (Math.random() * 100);
+            if(counter <= 10){
+                rectangle.setColor(Color.GREEN);
+                Thread.sleep(300);
+                draw();
+                continue;
+            }
+            if(counter <= 40){
+                rectangle.setColor(Color.BLUE);
+                Thread.sleep(300);
+                draw();
+                continue;
+            }
+            if(counter <= 70){
+                rectangle.setColor(Color.MAGENTA);
+                Thread.sleep(300);
+                draw();
+            }
+            else {
+                rectangle.setColor(Color.YELLOW);
+                Thread.sleep(300);
+                draw();
+
+            }
+        }
+
     }
 
     public void draw() {
+
         rectangle.fill();
     }
 }
