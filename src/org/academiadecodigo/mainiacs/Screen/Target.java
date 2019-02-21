@@ -11,7 +11,7 @@ public class Target {
     public Target() {
         int screenWidth = ScreenType.STAGE.getBackground().getWidth();
         int rectHeight = END_Y - START_Y;
-        rectangle = new Rectangle(20,START_Y,screenWidth-40,rectHeight);
+        rectangle = new Rectangle(30,START_Y,screenWidth-40,rectHeight);
         rectangle.setColor(Color.RED);
     }
 

@@ -14,22 +14,24 @@ public class Stage extends Screen {
 
     public Stage(ScreenType screenType) {
         super(screenType);
-        String link = "http://rndr.juniqe-production.juniqe.com/media/catalog/product/cache/x800/675/32/675-32-202X-Black.jpg";
-        background = new Picture(0, 10, link);
+        String link = "http://st2.depositphotos.com/1813786/7041/v/950/depositphotos_70414397-stock-illustration-vintage-label-rock-and-roll.jpg";
+        background = new Picture(10, 10, link);
+        double grow = Screen.SCREEN_HEIGHT - background.getHeight();
+        background.grow(0,grow);
     }
 
-    public void start() throws InterruptedException {
+    public void start() /*throws InterruptedException */{
         noteList = new LinkedList<>();
         target = new Target();
         drawStage();
-        while (true) {
+        /*while (true) {
+            Thread.sleep(2);
             getNewNote();
             for (Note note : noteList) {
                 note.move();
             }
             noteList.removeIf(note -> note.reachedEnd());
-            Thread.sleep(2);
-        }
+        }*/
     }
 
     private void drawStage() {
@@ -37,6 +39,7 @@ public class Stage extends Screen {
         counter.draw();
         Column.draw();
         target.draw();
+        counter.grow(20,20);
     }
 
     private void getNewNote() {
@@ -68,6 +71,11 @@ public class Stage extends Screen {
 
     @Override
     public void delete() {
-        background.delete();
+        //background.delete();
+    }
+
+    @Override
+    public String toString() {
+        return "Stage";
     }
 }

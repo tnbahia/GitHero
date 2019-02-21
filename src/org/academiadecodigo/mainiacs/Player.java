@@ -77,32 +77,33 @@ public class Player implements KeyboardHandler {
                 default:
                     Game.startStage(2);
             }
-        }
+        } else {
 
 
-        // Case stage
+            // Case stage
 
-        switch (keyboardEvent.getKey()) {
+            switch (keyboardEvent.getKey()) {
 
-            case KeyboardEvent.KEY_1:
-                stage.keyPressed(Column.COLUMN1);
-                break;
+                case KeyboardEvent.KEY_1:
+                    stage.keyPressed(Column.COLUMN1);
+                    break;
 
-            case KeyboardEvent.KEY_2:
-                stage.keyPressed(Column.COLUMN2);
-                break;
+                case KeyboardEvent.KEY_2:
+                    stage.keyPressed(Column.COLUMN2);
+                    break;
 
-            case KeyboardEvent.KEY_3:
-                stage.keyPressed(Column.COLUMN3);
-                break;
+                case KeyboardEvent.KEY_3:
+                    stage.keyPressed(Column.COLUMN3);
+                    break;
 
-            case KeyboardEvent.KEY_4:
-                stage.keyPressed(Column.COLUMN4);
-                break;
+                case KeyboardEvent.KEY_4:
+                    stage.keyPressed(Column.COLUMN4);
+                    break;
 
-            case KeyboardEvent.KEY_SPACE:
+                case KeyboardEvent.KEY_SPACE:
 
-                break;
+                    break;
+            }
         }
 
     }

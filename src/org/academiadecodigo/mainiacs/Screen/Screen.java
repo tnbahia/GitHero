@@ -11,7 +11,7 @@ public abstract class Screen {
         //this.player = player;
     }
 
-    public abstract void start() throws InterruptedException;
+    public abstract void start() /*throws InterruptedException */;
 
     public ScreenType getScreenType() {
         return screenType;
