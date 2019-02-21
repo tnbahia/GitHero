@@ -3,11 +3,13 @@ package org.academiadecodigo.mainiacs.Screen;
 import org.academiadecodigo.mainiacs.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.util.LinkedList;
+
 public class Stage extends Screen {
 
     private Counter counter = new Counter();
     private Target target;
-    private NoteList2 noteList;
+    private LinkedList<Note> noteList;
     private Picture background;
 
     public Stage(ScreenType screenType) {
@@ -17,7 +19,7 @@ public class Stage extends Screen {
     }
 
     public void start() throws InterruptedException {
-        noteList = new NoteList2();
+        noteList = new LinkedList<>();
         target = new Target();
         drawStage();
         while (true) {
