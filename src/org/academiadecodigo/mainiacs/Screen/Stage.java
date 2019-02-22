@@ -42,7 +42,7 @@ public class Stage extends Screen implements KeyboardHandler {
     }
 
     public void start() {
-        int sleepMillis = 3;
+        int sleepMillis = 4;
         int sleepNanos = 999900;
 
         while (true) {
@@ -50,7 +50,7 @@ public class Stage extends Screen implements KeyboardHandler {
             if (playing) {
                 sleepNanos -= 120;
                 if (sleepNanos <= 0) {
-                    if (sleepMillis > 1) {
+                    if (sleepMillis > 2) {
                         sleepMillis--;
                         sleepNanos = 999900;
                     } else {
@@ -101,7 +101,7 @@ public class Stage extends Screen implements KeyboardHandler {
             noteList.add(new Note());
             return;
         }
-        int distanceToLast = (int) (Math.random() * 700 + 150);
+        int distanceToLast = 800-counter.getPoints() + 150;
         if (noteList.size() >= 5 || last.getY() < distanceToLast) {
             return;
         }

@@ -14,6 +14,10 @@ public class Counter extends Text {
         setText();
     }
 
+    public int getPoints() {
+        return pointsNumber;
+    }
+
     public void decrease() {
         if (pointsNumber !=  0) {
             pointsNumber -= 10;
