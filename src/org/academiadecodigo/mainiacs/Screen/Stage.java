@@ -1,10 +1,15 @@
 package org.academiadecodigo.mainiacs.Screen;
 
 import org.academiadecodigo.mainiacs.*;
+import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
 import java.util.LinkedList;
 
-public class Stage extends Screen {
+public class Stage extends Screen implements KeyboardHandler {
 
     private Counter counter = new Counter();
     private Target target;
@@ -12,6 +17,9 @@ public class Stage extends Screen {
     private static Picture background;
     private static Music music = new Music();
     private int streak;
+    private boolean playing = true;
+    private Keyboard k;
+    private int playCount;
 
     public Stage(ScreenType screenType) {
         super(screenType);
@@ -22,6 +30,12 @@ public class Stage extends Screen {
     }
 
     public void start() {
+        k = new Keyboard(this);
+        KeyboardEvent spaceBarEvent = new KeyboardEvent();
+        spaceBarEvent.setKey(KeyboardEvent.KEY_SPACE);
+        spaceBarEvent.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        k.addEventListener(spaceBarEvent);
+
         noteList = new LinkedList<>();
 
         drawStage();
@@ -29,13 +43,10 @@ public class Stage extends Screen {
         int sleepNanos = 999900;
 
         while (true) {
-
             sleepNanos -= 100;
             if (sleepNanos <= 0) {
                 sleepNanos = 999900;
-                if (sleepMillis > 1) {
-                    sleepMillis--;
-                }
+                sleepMillis--;
             }
 
             try {
@@ -46,7 +57,7 @@ public class Stage extends Screen {
 
             getNewNote();
 
-            for (Note note: noteList) {
+            for (Note note : noteList) {
                 note.move();
             }
             noteList.removeIf(note -> note.reachedEnd());
@@ -54,7 +65,6 @@ public class Stage extends Screen {
             if (streak > 10) {
                 target.setColor();
             }
-
         }
     }
 
@@ -81,7 +91,7 @@ public class Stage extends Screen {
         noteList.add(new Note());
     }
 
-    public void keyPressed(Column col) {
+    public void keyPress(Column col) {
         for (Note note : noteList) {
             if (note.getColumn() != col) {
                 continue;
@@ -107,7 +117,17 @@ public class Stage extends Screen {
         return "Stage";
     }
 
-    public static Picture getBackground(){
+    public static Picture getBackground() {
         return background;
+    }
+
+    @Override
+    public void keyPressed(KeyboardEvent keyboardEvent) {
+        playCount++;
+    }
+
+    @Override
+    public void keyReleased(KeyboardEvent keyboardEvent) {
+
     }
 }

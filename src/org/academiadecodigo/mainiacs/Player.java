@@ -85,19 +85,19 @@ public class Player implements KeyboardHandler {
             switch (keyboardEvent.getKey()) {
 
                 case KeyboardEvent.KEY_1:
-                    stage.keyPressed(Column.COLUMN1);
+                    stage.keyPress(Column.COLUMN1);
                     break;
 
                 case KeyboardEvent.KEY_2:
-                    stage.keyPressed(Column.COLUMN2);
+                    stage.keyPress(Column.COLUMN2);
                     break;
 
                 case KeyboardEvent.KEY_3:
-                    stage.keyPressed(Column.COLUMN3);
+                    stage.keyPress(Column.COLUMN3);
                     break;
 
                 case KeyboardEvent.KEY_4:
-                    stage.keyPressed(Column.COLUMN4);
+                    stage.keyPress(Column.COLUMN4);
                     break;
                 case KeyboardEvent.KEY_SHIFT:
                     // TODO : MAIS QUE UMA TECLA, confirmar se shift pressed -> confirmar se as teclas pressed tem notas na coluna designada

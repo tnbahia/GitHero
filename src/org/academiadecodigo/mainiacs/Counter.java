@@ -19,7 +19,7 @@ public class Counter extends Text {
     }
 
     public void decrease() {
-        if (pointsNumber == 0) {
+        if (pointsNumber ==  0) {
             return;
         } else {
             pointsNumber -= 10;
