@@ -9,7 +9,7 @@ import java.net.URL;
 
 public class Music {
     public void startMusic(){
-        String pathStr = "/resources/thunderstruck.wav";
+        String pathStr = "/resources/sweet-child-o-mine.wav";
         URL soundURL;
         AudioInputStream audioInputStream = null;
         try{

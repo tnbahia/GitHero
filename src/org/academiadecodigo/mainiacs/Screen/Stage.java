@@ -40,33 +40,33 @@ public class Stage extends Screen implements KeyboardHandler {
         noteList = new LinkedList<>();
 
         drawStage();
-        int sleepMillis = 3;
+        int sleepMillis = 4;
         int sleepNanos = 999900;
 
         while (true) {
-            if (playing) {
-                sleepNanos -= 100;
-                if (sleepNanos <= 0) {
-                    sleepNanos = 999900;
+            sleepNanos -= 100;
+            if (sleepNanos <= 0) {
+                sleepNanos = 999900;
+                if (sleepMillis > 2) {
                     sleepMillis--;
                 }
+            }
 
-                try {
-                    Thread.sleep(sleepMillis, sleepNanos);
-                } catch (InterruptedException e) {
-                    System.out.println("IN START EXCEPTION");
-                }
+            try {
+                Thread.sleep(sleepMillis, sleepNanos);
+            } catch (InterruptedException e) {
+                System.out.println("IN START EXCEPTION");
+            }
 
-                getNewNote();
+            getNewNote();
 
-                for (Note note : noteList) {
-                    note.move();
-                }
-                noteList.removeIf(note -> note.reachedEnd());
+            for (Note note : noteList) {
+                note.move();
+            }
+            noteList.removeIf(note -> note.reachedEnd());
 
-                if (streak > 10) {
-                    target.setColor();
-                }
+            if (streak > 10) {
+                target.setColor();
             }
         }
     }
