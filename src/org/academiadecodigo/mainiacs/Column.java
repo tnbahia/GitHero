@@ -76,6 +76,16 @@ public enum Column {
         pic3.draw();
         pic4.draw();
 
+        Picture number1 = new Picture(Column.COLUMN1.getX()-32,0,"number-one.png");
+        Picture number2 = new Picture(Column.COLUMN2.getX()-32,0,"number-two.png");
+        Picture number3 = new Picture(Column.COLUMN3.getX(),0,"number-three.png");
+        Picture number4 = new Picture(Column.COLUMN4.getX(),0,"number-four.png");
+
+        number1.draw();
+        number2.draw();
+        number3.draw();
+        number4.draw();
+
     }
 
 }

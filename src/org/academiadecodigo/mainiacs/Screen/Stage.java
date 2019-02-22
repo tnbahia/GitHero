@@ -25,7 +25,7 @@ public class Stage extends Screen {
         noteList = new LinkedList<>();
 
         drawStage();
-        int sleepMillis = 3;
+        int sleepMillis = 4;
         int sleepNanos = 999900;
 
         while (true) {
@@ -33,7 +33,7 @@ public class Stage extends Screen {
             sleepNanos -= 100;
             if (sleepNanos <= 0) {
                 sleepNanos = 999900;
-                if (sleepMillis > 1) {
+                if (sleepMillis > 2) {
                     sleepMillis--;
                 }
             }
