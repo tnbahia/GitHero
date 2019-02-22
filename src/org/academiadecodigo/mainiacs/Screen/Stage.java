@@ -29,7 +29,8 @@ public class Stage extends Screen implements KeyboardHandler {
         background.grow(0, grow);
     }
 
-    public void start() {
+    public void init() {
+        drawStage();
         k = new Keyboard(this);
         KeyboardEvent spaceBarEvent = new KeyboardEvent();
         spaceBarEvent.setKey(KeyboardEvent.KEY_SPACE);
@@ -37,21 +38,28 @@ public class Stage extends Screen implements KeyboardHandler {
         k.addEventListener(spaceBarEvent);
 
         noteList = new LinkedList<>();
+        start();
+    }
 
-        drawStage();
-        int sleepMillis = 4;
-        int sleepNanos = 999900;
+    public void start() {
 
-        while (true) {
+        while (playing) {
+
+            int sleepMillis = 4;
+            int sleepNanos = 999900;
+
             if (playing) {
-                sleepNanos -= (sleepMillis>3)?200:(sleepMillis>2)?150:10;
+                sleepNanos -= 100;
                 if (sleepNanos <= 0) {
-                    sleepNanos = 999900;
-                    if (sleepMillis > 1) {
+                    if (sleepMillis > 2) {
                         sleepMillis--;
+                        sleepNanos = 999900;
+                    } else {
+                        sleepNanos = 0;
                     }
                 }
-
+                System.out.println(sleepMillis);
+                System.out.println(sleepNanos);
                 try {
                     Thread.sleep(sleepMillis, sleepNanos);
                 } catch (InterruptedException e) {
@@ -133,14 +141,19 @@ public class Stage extends Screen implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-        playing = false;
-        Picture finalScore = new Picture((background.getWidth()-400)/2.0,background.getHeight()/2.0 - 200,"score.png");
-        finalScore.draw();
-        Text score = new Text(450,330,counter.toString());
-        score.grow(10,10);
-        score.setColor(Color.WHITE);
-        score.draw();
-        music.stopMusic();
+        playing = !playing;
+        if (!playing) {
+            Picture finalScore = new Picture((background.getWidth() - 400) / 2.0, background.getHeight() / 2.0 - 200, "score.png");
+            finalScore.draw();
+            Text score = new Text(450, 330, counter.toString());
+            score.grow(10, 10);
+            score.setColor(Color.WHITE);
+            score.draw();
+            music.stopMusic();
+        } else {
+            start();
+        }
+
     }
 
     @Override

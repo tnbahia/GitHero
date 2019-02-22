@@ -22,7 +22,7 @@ public class Game {
     public static void init() {
         player.setCurrentScreen(ScreenType.STAGE);
         player.setStage((Stage) screens[1]);
-        screens[1].start();
+        ((Stage)screens[1]).init();
     }
 
     public static void startStage(int stageNumber) {
