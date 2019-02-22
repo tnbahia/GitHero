@@ -23,7 +23,7 @@ public class Stage extends Screen implements KeyboardHandler {
     private Keyboard k;
 
     public Stage() {
-        String link = "backgroundAl.jpg";
+        String link = "resources/backgroundAl.jpg";
         background = new Picture(10, 10, link);
         double grow = Screen.SCREEN_HEIGHT - background.getHeight();
         background.grow(0, grow);
@@ -42,11 +42,10 @@ public class Stage extends Screen implements KeyboardHandler {
     }
 
     public void start() {
+        int sleepMillis = 4;
+        int sleepNanos = 999900;
 
         while (true) {
-
-            int sleepMillis = 4;
-            int sleepNanos = 999900;
 
             if (playing) {
                 sleepNanos -= 100;
@@ -58,8 +57,8 @@ public class Stage extends Screen implements KeyboardHandler {
                         sleepNanos = 0;
                     }
                 }
-                System.out.println(sleepMillis);
-                System.out.println(sleepNanos);
+                //System.out.println(sleepMillis);
+                //System.out.println(sleepNanos);
                 try {
                     Thread.sleep(sleepMillis, sleepNanos);
                 } catch (InterruptedException e) {
@@ -143,7 +142,7 @@ public class Stage extends Screen implements KeyboardHandler {
     public void keyPressed(KeyboardEvent keyboardEvent) {
         playing = !playing;
         if (!playing) {
-            Picture finalScore = new Picture((background.getWidth() - 400) / 2.0, background.getHeight() / 2.0 - 200, "score.png");
+            Picture finalScore = new Picture((background.getWidth() - 400) / 2.0, background.getHeight() / 2.0 - 200, "resources/score.png");
             finalScore.draw();
             Text score = new Text(450, 330, counter.toString());
             score.grow(10, 10);

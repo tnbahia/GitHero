@@ -7,7 +7,7 @@ public class StartMenu extends Screen {
     private Picture background;
 
     public StartMenu () {
-        String link = "start-menu-background.jpg";
+        String link = "resources/start-menu-background.jpg";
         background = new Picture();
         background.load(link);
     }

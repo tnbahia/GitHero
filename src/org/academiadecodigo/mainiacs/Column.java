@@ -8,10 +8,10 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public enum Column {
 
-    COLUMN1(Color.BLUE, "botRegBlue.png"),
-    COLUMN2(Color.GREEN, "botRegGreen.png"),
-    COLUMN3(Color.YELLOW, "botRegYellow.png"),
-    COLUMN4(Color.RED, "botRegRed.png");
+    COLUMN1(Color.BLUE, "resources/botRegBlue.png"),
+    COLUMN2(Color.GREEN, "resources/botRegGreen.png"),
+    COLUMN3(Color.YELLOW, "resources/botRegYellow.png"),
+    COLUMN4(Color.RED, "resources/botRegRed.png");
 
     private Color color;
     private double x;
@@ -54,16 +54,16 @@ public enum Column {
         col3.draw();
         col4.draw();
 
-        Picture pic1 = new Picture(Column.COLUMN1.getX()- 90, Target.START_Y-22, "botBarBlue.png");
+        Picture pic1 = new Picture(Column.COLUMN1.getX()- 90, Target.START_Y-22, "resources/botBarBlue.png");
         pic1.grow(Note.WIDTH_OF_NOTE-pic1.getWidth(),Note.HEIGHT_OF_NOTE-pic1.getHeight());
 
-        Picture pic2 = new Picture(Column.COLUMN2.getX()- 90, Target.START_Y-22, "botBarGreen.png");
+        Picture pic2 = new Picture(Column.COLUMN2.getX()- 90, Target.START_Y-22, "resources/botBarGreen.png");
         pic2.grow(Note.WIDTH_OF_NOTE-pic2.getWidth(),Note.HEIGHT_OF_NOTE-pic2.getHeight());
 
-        Picture pic3 = new Picture(Column.COLUMN3.getX()- 90, Target.START_Y-22, "botBarYellow.png");
+        Picture pic3 = new Picture(Column.COLUMN3.getX()- 90, Target.START_Y-22, "resources/botBarYellow.png");
         pic3.grow(Note.WIDTH_OF_NOTE-pic3.getWidth(),Note.HEIGHT_OF_NOTE-pic3.getHeight());
 
-        Picture pic4 = new Picture(Column.COLUMN4.getX()- 90, Target.START_Y-22, "botBarRed.png");
+        Picture pic4 = new Picture(Column.COLUMN4.getX()- 90, Target.START_Y-22, "resources/botBarRed.png");
         pic4.grow(Note.WIDTH_OF_NOTE-pic4.getWidth(),Note.HEIGHT_OF_NOTE-pic4.getHeight());
 
         pic1.draw();
@@ -71,10 +71,10 @@ public enum Column {
         pic3.draw();
         pic4.draw();
 
-        Picture number1 = new Picture(Column.COLUMN1.getX()-32,0,"number-one.png");
-        Picture number2 = new Picture(Column.COLUMN2.getX()-32,0,"number-two.png");
-        Picture number3 = new Picture(Column.COLUMN3.getX(),0,"number-three.png");
-        Picture number4 = new Picture(Column.COLUMN4.getX(),0,"number-four.png");
+        Picture number1 = new Picture(Column.COLUMN1.getX()-32,0,"resources/number-one.png");
+        Picture number2 = new Picture(Column.COLUMN2.getX()-32,0,"resources/number-two.png");
+        Picture number3 = new Picture(Column.COLUMN3.getX(),0,"resources/number-three.png");
+        Picture number4 = new Picture(Column.COLUMN4.getX(),0,"resources/number-four.png");
 
         number1.draw();
         number2.draw();

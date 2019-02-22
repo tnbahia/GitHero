@@ -77,16 +77,16 @@ public class Note {
         hit = true;
         switch (column) {
             case COLUMN1:
-                pic.load("botAlertBlue.png");
+                pic.load("resources/botAlertBlue.png");
                 break;
             case COLUMN2:
-                pic.load("botAlertGreen.png");
+                pic.load("resources/botAlertGreen.png");
                 break;
             case COLUMN3:
-                pic.load("botAlertYellow.png");
+                pic.load("resources/botAlertYellow.png");
                 break;
             case COLUMN4:
-                pic.load("botAlertRed.png");
+                pic.load("resources/botAlertRed.png");
                 break;
         }
     }
