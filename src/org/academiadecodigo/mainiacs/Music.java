@@ -10,7 +10,7 @@ public class Music {
     private static Clip clip;
 
     public void startMusic(){
-        String pathStr = "/resources/sweet-child-o-mine.wav";
+        String pathStr = "/resources/thunderstruck.wav";
         URL soundURL;
         AudioInputStream audioInputStream = null;
         try{

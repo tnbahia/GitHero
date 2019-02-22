@@ -44,7 +44,7 @@ public class Stage extends Screen implements KeyboardHandler {
 
         while (true) {
             if (playing) {
-                sleepNanos -= 150;
+                sleepNanos -= (sleepMillis>3)?200:(sleepMillis>2)?150:10;
                 if (sleepNanos <= 0) {
                     sleepNanos = 999900;
                     if (sleepMillis > 1) {
@@ -64,9 +64,14 @@ public class Stage extends Screen implements KeyboardHandler {
                     note.move();
                 }
 
-                noteList.removeIf(note -> note.reachedEnd());
+                noteList.removeIf(note -> (note.isHit() && !note.isInTarget()));
 
-                if (streak > 10) {
+                if(noteList.removeIf(note -> note.reachedEnd())) {
+                    counter.decrease();
+                    streak = 0;
+                }
+
+                if (streak == 10 || streak == 15 || streak >= 20) {
                     target.setColor();
                 }
             }
