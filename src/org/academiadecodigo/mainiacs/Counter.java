@@ -31,6 +31,8 @@ public class Counter extends Text {
         super.setText((((Integer)pointsNumber).toString()));
     }
 
-
-
+    @Override
+    public String toString() {
+        return (((Integer)pointsNumber).toString());
+    }
 }

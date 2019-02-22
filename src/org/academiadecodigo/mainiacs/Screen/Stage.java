@@ -1,6 +1,8 @@
 package org.academiadecodigo.mainiacs.Screen;
 
 import org.academiadecodigo.mainiacs.*;
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -19,7 +21,6 @@ public class Stage extends Screen implements KeyboardHandler {
     private int streak;
     private boolean playing = true;
     private Keyboard k;
-    private int playCount;
 
     public Stage(ScreenType screenType) {
         super(screenType);
@@ -43,27 +44,29 @@ public class Stage extends Screen implements KeyboardHandler {
         int sleepNanos = 999900;
 
         while (true) {
-            sleepNanos -= 100;
-            if (sleepNanos <= 0) {
-                sleepNanos = 999900;
-                sleepMillis--;
-            }
+            if (playing) {
+                sleepNanos -= 100;
+                if (sleepNanos <= 0) {
+                    sleepNanos = 999900;
+                    sleepMillis--;
+                }
 
-            try {
-                Thread.sleep(sleepMillis, sleepNanos);
-            } catch (InterruptedException e) {
-                System.out.println("IN START EXCEPTION");
-            }
+                try {
+                    Thread.sleep(sleepMillis, sleepNanos);
+                } catch (InterruptedException e) {
+                    System.out.println("IN START EXCEPTION");
+                }
 
-            getNewNote();
+                getNewNote();
 
-            for (Note note : noteList) {
-                note.move();
-            }
-            noteList.removeIf(note -> note.reachedEnd());
+                for (Note note : noteList) {
+                    note.move();
+                }
+                noteList.removeIf(note -> note.reachedEnd());
 
-            if (streak > 10) {
-                target.setColor();
+                if (streak > 10) {
+                    target.setColor();
+                }
             }
         }
     }
@@ -123,7 +126,13 @@ public class Stage extends Screen implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-        playCount++;
+        playing = false;
+        Picture finalScore = new Picture((background.getWidth()-400)/2.0,background.getHeight()/2.0 - 200,"score.png");
+        finalScore.draw();
+        Text score = new Text(450,330,counter.toString());
+        score.grow(10,10);
+        score.setColor(Color.WHITE);
+        score.draw();
     }
 
     @Override
