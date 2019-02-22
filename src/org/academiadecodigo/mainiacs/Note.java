@@ -39,12 +39,10 @@ public class Note {
 
     public void show() {
         pic.draw();
-
     }
 
     public void hide() {
         pic.delete();
-
     }
 
     public void move() {
@@ -69,6 +67,10 @@ public class Note {
 
     public boolean reachedEnd() {
         return reachedEnd;
+    }
+
+    public boolean isHit() {
+        return hit;
     }
 
     public void hit() {

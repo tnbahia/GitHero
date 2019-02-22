@@ -1,10 +1,17 @@
 package org.academiadecodigo.mainiacs.Screen;
 
 import org.academiadecodigo.mainiacs.*;
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Text;
+import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
 import java.util.LinkedList;
 
-public class Stage extends Screen {
+public class Stage extends Screen implements KeyboardHandler {
 
     private Counter counter = new Counter();
     private Target target;
@@ -12,49 +19,70 @@ public class Stage extends Screen {
     private static Picture background;
     private static Music music = new Music();
     private int streak;
+    private boolean playing = true;
+    private Keyboard k;
 
-    public Stage(ScreenType screenType) {
-        super(screenType);
+    public Stage() {
         String link = "backgroundAl.jpg";
         background = new Picture(10, 10, link);
         double grow = Screen.SCREEN_HEIGHT - background.getHeight();
         background.grow(0, grow);
     }
 
-    public void start() {
-        noteList = new LinkedList<>();
-
+    public void init() {
         drawStage();
-        int sleepMillis = 3;
-        int sleepNanos = 999999;
+        k = new Keyboard(this);
+        KeyboardEvent spaceBarEvent = new KeyboardEvent();
+        spaceBarEvent.setKey(KeyboardEvent.KEY_SPACE);
+        spaceBarEvent.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        k.addEventListener(spaceBarEvent);
+
+        noteList = new LinkedList<>();
+        start();
+    }
+
+    public void start() {
 
         while (true) {
 
-            sleepNanos -= 100;
-            if (sleepNanos <= 0) {
-                sleepNanos = 999999;
-                if (sleepMillis > 1) {
-                    sleepMillis--;
+            int sleepMillis = 4;
+            int sleepNanos = 999900;
+
+            if (playing) {
+                sleepNanos -= 100;
+                if (sleepNanos <= 0) {
+                    if (sleepMillis > 2) {
+                        sleepMillis--;
+                        sleepNanos = 999900;
+                    } else {
+                        sleepNanos = 0;
+                    }
+                }
+                System.out.println(sleepMillis);
+                System.out.println(sleepNanos);
+                try {
+                    Thread.sleep(sleepMillis, sleepNanos);
+                } catch (InterruptedException e) {
+                    System.out.println("IN START EXCEPTION");
+                }
+
+                getNewNote();
+
+                for (Note note : noteList) {
+                    note.move();
+                }
+
+                noteList.removeIf(note -> (note.isHit() && !note.isInTarget()));
+
+                if(noteList.removeIf(note -> note.reachedEnd())) {
+                    counter.decrease();
+                    streak = 0;
+                }
+
+                if (streak == 10 || streak == 15 || streak >= 20) {
+                    target.setColor();
                 }
             }
-
-            try {
-                Thread.sleep(sleepMillis, sleepNanos);
-            } catch (InterruptedException e) {
-                System.out.println("IN START EXCEPTION");
-            }
-
-            getNewNote();
-
-            for (Note note: noteList) {
-                note.move();
-            }
-            noteList.removeIf(note -> note.reachedEnd());
-
-            if (streak > 10) {
-                target.setColor();
-            }
-
         }
     }
 
@@ -81,7 +109,7 @@ public class Stage extends Screen {
         noteList.add(new Note());
     }
 
-    public void keyPressed(Column col) {
+    public void keyPress(Column col) {
         for (Note note : noteList) {
             if (note.getColumn() != col) {
                 continue;
@@ -99,7 +127,7 @@ public class Stage extends Screen {
 
     @Override
     public void delete() {
-        //background.delete();
+        background.delete();
     }
 
     @Override
@@ -107,7 +135,29 @@ public class Stage extends Screen {
         return "Stage";
     }
 
-    public static Picture getBackground(){
+    public static Picture getBackground() {
         return background;
+    }
+
+    @Override
+    public void keyPressed(KeyboardEvent keyboardEvent) {
+        playing = !playing;
+        if (!playing) {
+            Picture finalScore = new Picture((background.getWidth() - 400) / 2.0, background.getHeight() / 2.0 - 200, "score.png");
+            finalScore.draw();
+            Text score = new Text(450, 330, counter.toString());
+            score.grow(10, 10);
+            score.setColor(Color.WHITE);
+            score.draw();
+            music.stopMusic();
+        } else {
+            start();
+        }
+
+    }
+
+    @Override
+    public void keyReleased(KeyboardEvent keyboardEvent) {
+
     }
 }

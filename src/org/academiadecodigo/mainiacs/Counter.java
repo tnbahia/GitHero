@@ -9,19 +9,13 @@ public class Counter extends Text {
         super(50,50,"0");
     }
 
-    public int getPoints() {
-        return pointsNumber;
-    }
-
     public void increase() {
         pointsNumber += 50;
         setText();
     }
 
     public void decrease() {
-        if (pointsNumber == 0) {
-            return;
-        } else {
+        if (pointsNumber !=  0) {
             pointsNumber -= 10;
             setText();
         }
@@ -31,6 +25,8 @@ public class Counter extends Text {
         super.setText((((Integer)pointsNumber).toString()));
     }
 
-
-
+    @Override
+    public String toString() {
+        return (((Integer)pointsNumber).toString());
+    }
 }

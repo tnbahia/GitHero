@@ -11,16 +11,15 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 public class Player implements KeyboardHandler {
 
     private ScreenType currentScreen;
-    //private Game game;
     private Stage stage;
 
     Player(){
 
         Keyboard keyboard = new Keyboard(this);
 
-        KeyboardEvent spaceBarEvent = new KeyboardEvent();
+        /*KeyboardEvent spaceBarEvent = new KeyboardEvent();
         spaceBarEvent.setKey(KeyboardEvent.KEY_SPACE);
-        spaceBarEvent.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        spaceBarEvent.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);*/
 
 
         KeyboardEvent key1Event = new KeyboardEvent();
@@ -39,7 +38,7 @@ public class Player implements KeyboardHandler {
         key4Event.setKey(KeyboardEvent.KEY_4);
         key4Event.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        keyboard.addEventListener(spaceBarEvent);
+        //keyboard.addEventListener(spaceBarEvent);
         keyboard.addEventListener(key1Event);
         keyboard.addEventListener(key2Event);
         keyboard.addEventListener(key3Event);
@@ -85,22 +84,19 @@ public class Player implements KeyboardHandler {
             switch (keyboardEvent.getKey()) {
 
                 case KeyboardEvent.KEY_1:
-                    stage.keyPressed(Column.COLUMN1);
+                    stage.keyPress(Column.COLUMN1);
                     break;
 
                 case KeyboardEvent.KEY_2:
-                    stage.keyPressed(Column.COLUMN2);
+                    stage.keyPress(Column.COLUMN2);
                     break;
 
                 case KeyboardEvent.KEY_3:
-                    stage.keyPressed(Column.COLUMN3);
+                    stage.keyPress(Column.COLUMN3);
                     break;
 
                 case KeyboardEvent.KEY_4:
-                    stage.keyPressed(Column.COLUMN4);
-                    break;
-                case KeyboardEvent.KEY_SHIFT:
-                    // TODO : MAIS QUE UMA TECLA, confirmar se shift pressed -> confirmar se as teclas pressed tem notas na coluna designada
+                    stage.keyPress(Column.COLUMN4);
                     break;
             }
         }

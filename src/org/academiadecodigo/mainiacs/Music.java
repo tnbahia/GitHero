@@ -1,13 +1,14 @@
 package org.academiadecodigo.mainiacs;
 
-import org.academiadecodigo.mainiacs.Screen.Stage;
-
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
 public class Music {
+
+    private static Clip clip;
+
     public void startMusic(){
         String pathStr = "/resources/thunderstruck.wav";
         URL soundURL;
@@ -26,15 +27,18 @@ public class Music {
             e.printStackTrace();
         }
         try {
-            Clip clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
-            clip.loop(clip.LOOP_CONTINUOUSLY);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void stopMusic() {
+        clip.close();
     }
 
 }
