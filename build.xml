@@ -1,15 +1,13 @@
 <project name="GuitarHero2" default="jarfile">
 
     <target name="init" description="Initializes properties">
-        <property name="project.name" value="GuitarHero2" />
+        <property name="project.name" value="GuitarHero2"/>
         <property name="main.class" value="org.academiadecodigo.mainiacs.Game"/>
-        <property name="res.dir" value="build/res"/>
+        <property name="lib.dir" value="lib"/>
+        <property name="resources.dir" value="resources"/>
         <property name="classes.dir" value="build/classes"/>
         <path id="classpath">
             <fileset dir="lib" includes="**/*.jar"/>
-        </path>
-        <path id="respath">
-            <fileset dir="resources" includes="**/*.*"/>
         </path>
     </target>
 
@@ -20,20 +18,19 @@
     <target name="compile" description="Compiles the code" depends="prepare">
         <javac srcdir="src" destdir="${classes.dir}">
             <classpath refid="classpath"/>
-            <classpath refid="respath"/>
         </javac>
-        <mappedresources refid="respath" description="Resources">
-            <fileset dir="resources"/>
-        </mappedresources>
     </target>
 
     <target name="jarfile" description="Creates the jar" depends="compile">
         <jar destfile="build/${project.name}.jar" basedir="${classes.dir}">
             <manifest>
                 <attribute name="Main-Class" value="${main.class}"/>
-                <attribute name="Class-Path" value="lib"/>
+                <attribute name="Class-Path" value="${lib.dir} ${resources.dir}"/>
             </manifest>
             <zipgroupfileset dir="lib" includes="*.jar"/>
+            <fileset dir=".">
+                <include name="**/${resources.dir}/**"/>
+            </fileset>
         </jar>
     </target>
 
