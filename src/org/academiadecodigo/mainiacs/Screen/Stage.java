@@ -43,7 +43,7 @@ public class Stage extends Screen implements KeyboardHandler {
 
     public void start() {
 
-        while (playing) {
+        while (true) {
 
             int sleepMillis = 4;
             int sleepNanos = 999900;

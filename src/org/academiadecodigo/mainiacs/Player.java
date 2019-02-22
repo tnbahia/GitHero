@@ -17,9 +17,9 @@ public class Player implements KeyboardHandler {
 
         Keyboard keyboard = new Keyboard(this);
 
-        KeyboardEvent spaceBarEvent = new KeyboardEvent();
+        /*KeyboardEvent spaceBarEvent = new KeyboardEvent();
         spaceBarEvent.setKey(KeyboardEvent.KEY_SPACE);
-        spaceBarEvent.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        spaceBarEvent.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);*/
 
 
         KeyboardEvent key1Event = new KeyboardEvent();
@@ -38,7 +38,7 @@ public class Player implements KeyboardHandler {
         key4Event.setKey(KeyboardEvent.KEY_4);
         key4Event.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-        keyboard.addEventListener(spaceBarEvent);
+        //keyboard.addEventListener(spaceBarEvent);
         keyboard.addEventListener(key1Event);
         keyboard.addEventListener(key2Event);
         keyboard.addEventListener(key3Event);
