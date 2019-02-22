@@ -24,7 +24,7 @@ public class Stage extends Screen implements KeyboardHandler {
 
     public Stage(ScreenType screenType) {
         super(screenType);
-        String link = "backgroundAl.jpg";
+        String link = "resources/backgroundAl.jpg";
         background = new Picture(10, 10, link);
         double grow = Screen.SCREEN_HEIGHT - background.getHeight();
         background.grow(0, grow);
@@ -128,7 +128,7 @@ public class Stage extends Screen implements KeyboardHandler {
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         playing = false;
-        Picture finalScore = new Picture((background.getWidth()-400)/2.0,background.getHeight()/2.0 - 200,"score.png");
+        Picture finalScore = new Picture((background.getWidth()-400)/2.0,background.getHeight()/2.0 - 200,"resources/score.png");
         finalScore.draw();
         Text score = new Text(450,330,counter.toString());
         score.grow(10,10);

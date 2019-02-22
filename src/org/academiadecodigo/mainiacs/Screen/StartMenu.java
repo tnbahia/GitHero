@@ -9,7 +9,7 @@ public class StartMenu extends Screen {
 
     public StartMenu () {
         super(ScreenType.START_MENU);
-        String link = "start-menu-background.jpg";
+        String link = "resources/start-menu-background.jpg";
         background = new Picture();
         background.load(link);
     }
