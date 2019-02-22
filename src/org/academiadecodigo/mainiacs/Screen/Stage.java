@@ -101,7 +101,7 @@ public class Stage extends Screen implements KeyboardHandler {
             noteList.add(new Note());
             return;
         }
-        int distanceToLast = 800-counter.getPoints() + 150;
+        int distanceToLast = (int) (Math.random()*750 +150);
         if (noteList.size() >= 5 || last.getY() < distanceToLast) {
             return;
         }
