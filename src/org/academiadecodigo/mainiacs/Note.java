@@ -72,6 +72,10 @@ public class Note {
         return reachedEnd;
     }
 
+    public boolean isHit() {
+        return hit;
+    }
+
     public void hit() {
         hit = true;
         switch (column) {

@@ -44,29 +44,30 @@ public class Stage extends Screen implements KeyboardHandler {
         int sleepNanos = 999900;
 
         while (true) {
-            sleepNanos -= 100;
-            if (sleepNanos <= 0) {
-                sleepNanos = 999900;
-                if (sleepMillis > 2) {
-                    sleepMillis--;
+            if (playing) {
+                sleepNanos -= 150;
+                if (sleepNanos <= 0) {
+                    sleepNanos = 999900;
+                    if (sleepMillis > 1) {
+                        sleepMillis--;
+                    }
                 }
-            }
 
-            try {
-                Thread.sleep(sleepMillis, sleepNanos);
-            } catch (InterruptedException e) {
-                System.out.println("IN START EXCEPTION");
-            }
+                try {
+                    Thread.sleep(sleepMillis, sleepNanos);
+                } catch (InterruptedException e) {
+                    System.out.println("IN START EXCEPTION");
+                }
 
-            getNewNote();
+                getNewNote();
 
-            for (Note note : noteList) {
-                note.move();
-            }
-            noteList.removeIf(note -> note.reachedEnd());
+                for (Note note : noteList) {
+                    note.move();
+                }
 
-            if (streak > 10) {
-                target.setColor();
+                if (streak > 10) {
+                    target.setColor();
+                }
             }
         }
     }
@@ -133,6 +134,7 @@ public class Stage extends Screen implements KeyboardHandler {
         score.grow(10,10);
         score.setColor(Color.WHITE);
         score.draw();
+        music.stopMusic();
     }
 
     @Override
