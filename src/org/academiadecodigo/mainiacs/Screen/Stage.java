@@ -22,8 +22,7 @@ public class Stage extends Screen implements KeyboardHandler {
     private boolean playing = true;
     private Keyboard k;
 
-    public Stage(ScreenType screenType) {
-        super(screenType);
+    public Stage() {
         String link = "backgroundAl.jpg";
         background = new Picture(10, 10, link);
         double grow = Screen.SCREEN_HEIGHT - background.getHeight();
@@ -64,6 +63,8 @@ public class Stage extends Screen implements KeyboardHandler {
                 for (Note note : noteList) {
                     note.move();
                 }
+
+                noteList.removeIf(note -> note.reachedEnd());
 
                 if (streak > 10) {
                     target.setColor();
@@ -113,7 +114,7 @@ public class Stage extends Screen implements KeyboardHandler {
 
     @Override
     public void delete() {
-        //background.delete();
+        background.delete();
     }
 
     @Override

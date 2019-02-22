@@ -39,12 +39,10 @@ public class Note {
 
     public void show() {
         pic.draw();
-
     }
 
     public void hide() {
         pic.delete();
-
     }
 
     public void move() {
@@ -62,7 +60,6 @@ public class Note {
              }
             return;
         }
-
         if (y + HEIGHT_OF_NOTE > Target.START_Y) {
             inTarget = true;
         }

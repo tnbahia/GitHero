@@ -9,10 +9,6 @@ public class Counter extends Text {
         super(50,50,"0");
     }
 
-    public int getPoints() {
-        return pointsNumber;
-    }
-
     public void increase() {
         pointsNumber += 50;
         setText();

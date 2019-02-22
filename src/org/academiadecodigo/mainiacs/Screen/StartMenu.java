@@ -1,6 +1,5 @@
 package org.academiadecodigo.mainiacs.Screen;
 
-import org.academiadecodigo.simplegraphics.graphics.Canvas;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class StartMenu extends Screen {
@@ -8,7 +7,6 @@ public class StartMenu extends Screen {
     private Picture background;
 
     public StartMenu () {
-        super(ScreenType.START_MENU);
         String link = "start-menu-background.jpg";
         background = new Picture();
         background.load(link);
@@ -17,10 +15,6 @@ public class StartMenu extends Screen {
     @Override
     public void start() {
         background.draw();
-    }
-
-    public Picture getBackground() {
-        return background;
     }
 
     @Override
