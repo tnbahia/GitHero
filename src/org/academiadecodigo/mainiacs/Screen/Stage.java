@@ -108,6 +108,9 @@ public class Stage extends Screen implements KeyboardHandler {
         Column.draw();
         counter.grow(50, 20);
         streakText.grow(50,20);
+        Text instructions = new Text(20,780,"PRESS SPACE TO END GAME");
+        instructions.setColor(Color.BLACK);
+        instructions.draw();
     }
 
     private void getNewNote() {
