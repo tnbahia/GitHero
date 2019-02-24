@@ -54,14 +54,13 @@ public class Stage extends Screen implements KeyboardHandler {
                 if (sleepNanos <= 0) {
                     if (distanceBetweenNotes > 100) {
                         distanceBetweenNotes -= 20;
-                        System.out.println(distanceBetweenNotes);
-                        sleepNanos = 999900;
                     } else if (distanceBetweenNotes == 100){
                         sleepMillis --;
                         distanceBetweenNotes -= 1;
                     } else {
                         distanceBetweenNotes -= 10;
                     }
+                    sleepNanos = 999900;
 
                 }
                 //System.out.println(sleepMillis);
