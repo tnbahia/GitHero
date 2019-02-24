@@ -22,6 +22,7 @@ public class Stage extends Screen implements KeyboardHandler {
     private boolean playing = true;
     private Keyboard k;
     private int distanceBetweenNotes = 200;
+    private Text streakText = new Text(SCREEN_WIDTH/2,150,"STREAK!!!");
 
     public Stage() {
         String link = "resources/backgroundAl.jpg";
@@ -49,11 +50,19 @@ public class Stage extends Screen implements KeyboardHandler {
         while (true) {
 
             if (playing) {
-                sleepNanos -= 120;
+                sleepNanos -= 100;
                 if (sleepNanos <= 0) {
-                    distanceBetweenNotes -= 20;
-                    System.out.println(distanceBetweenNotes);
-                    sleepNanos = 999900;
+                    if (distanceBetweenNotes > 100) {
+                        distanceBetweenNotes -= 20;
+                        System.out.println(distanceBetweenNotes);
+                        sleepNanos = 999900;
+                    } else if (distanceBetweenNotes == 100){
+                        sleepMillis --;
+                        distanceBetweenNotes -= 1;
+                    } else {
+                        distanceBetweenNotes -= 10;
+                    }
+
                 }
                 //System.out.println(sleepMillis);
                 //System.out.println(sleepNanos);
@@ -76,12 +85,16 @@ public class Stage extends Screen implements KeyboardHandler {
                     streak = 0;
                 }
 
-                if (streak == 10 || streak == 15 || streak > 20 && streak < 30) {
+                if (streak == 10 || streak == 20 || streak > 30) {
                     target.setColor();
-                } else if (streak == 30) {
-                    //distanceBetweenNotes -= 50;
                 }
 
+                if (streak > 30) {
+                    streakText.draw();
+                    streakText.setColor(target.getColor());
+                } else {
+                    streakText.delete();
+                }
             }
         }
     }
@@ -93,7 +106,8 @@ public class Stage extends Screen implements KeyboardHandler {
         target = new Target();
         target.draw();
         Column.draw();
-        counter.grow(20, 20);
+        counter.grow(50, 20);
+        streakText.grow(50,20);
     }
 
     private void getNewNote() {
@@ -116,6 +130,9 @@ public class Stage extends Screen implements KeyboardHandler {
                 continue;
             }
             if (note.isInTarget()) {
+                if (streak > 30) {
+                    counter.increase();
+                }
                 counter.increase();
                 streak++;
                 note.hit();

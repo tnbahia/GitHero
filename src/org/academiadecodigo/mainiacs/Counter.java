@@ -6,16 +6,12 @@ public class Counter extends Text {
     private int pointsNumber = 0;
 
     public Counter(){
-        super(50,50,"0");
+        super(80,50,"0");
     }
 
     public void increase() {
-        pointsNumber += 50;
+        pointsNumber += 20;
         setText();
-    }
-
-    public int getPoints() {
-        return pointsNumber;
     }
 
     public void decrease() {
