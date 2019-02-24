@@ -21,6 +21,7 @@ public class Stage extends Screen implements KeyboardHandler {
     private int streak;
     private boolean playing = true;
     private Keyboard k;
+    private int distanceBetweenNotes = 200;
 
     public Stage() {
         String link = "resources/backgroundAl.jpg";
@@ -50,17 +51,14 @@ public class Stage extends Screen implements KeyboardHandler {
             if (playing) {
                 sleepNanos -= 120;
                 if (sleepNanos <= 0) {
-                    if (sleepMillis > 2) {
-                        sleepMillis--;
-                        sleepNanos = 999900;
-                    } else {
-                        sleepNanos = 0;
-                    }
+                    distanceBetweenNotes -= 20;
+                    System.out.println(distanceBetweenNotes);
+                    sleepNanos = 999900;
                 }
                 //System.out.println(sleepMillis);
                 //System.out.println(sleepNanos);
                 try {
-                    Thread.sleep(sleepMillis, sleepNanos);
+                    Thread.sleep(sleepMillis);
                 } catch (InterruptedException e) {
                     System.out.println("IN START EXCEPTION");
                 }
@@ -78,9 +76,12 @@ public class Stage extends Screen implements KeyboardHandler {
                     streak = 0;
                 }
 
-                if (streak == 10 || streak == 15 || streak >= 20) {
+                if (streak == 10 || streak == 15 || streak > 20 && streak < 30) {
                     target.setColor();
+                } else if (streak == 30) {
+                    //distanceBetweenNotes -= 50;
                 }
+
             }
         }
     }
@@ -101,11 +102,12 @@ public class Stage extends Screen implements KeyboardHandler {
             noteList.add(new Note());
             return;
         }
-        int distanceToLast = (int) (Math.random()*750 +150);
-        if (noteList.size() >= 5 || last.getY() < distanceToLast) {
+        if (noteList.size() >= 10 || last.getY() < distanceBetweenNotes) {
             return;
         }
-        noteList.add(new Note());
+        Note next = new Note();
+        next.setDistanceToNext(distanceBetweenNotes);
+        noteList.add(next);
     }
 
     public void keyPress(Column col) {

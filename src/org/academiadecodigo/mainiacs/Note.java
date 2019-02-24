@@ -14,6 +14,7 @@ public class Note {
     public static final int WIDTH_OF_NOTE = 50;
     public static final int HEIGHT_OF_NOTE = 90;
     private boolean hit;
+    private int distanceToNext;
 
 
     public Note() {
@@ -89,6 +90,14 @@ public class Note {
                 pic.load("resources/botAlertRed.png");
                 break;
         }
+    }
+
+    public void setDistanceToNext(int distanceToNext) {
+        this.distanceToNext = distanceToNext;
+    }
+
+    public int getDistanceToNext() {
+        return distanceToNext;
     }
 }
 
