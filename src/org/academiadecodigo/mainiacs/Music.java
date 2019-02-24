@@ -41,4 +41,8 @@ public class Music {
         clip.close();
     }
 
+    public boolean isPlaying() {
+        return clip.isActive();
+    }
+
 }

@@ -49,7 +49,7 @@ public class Stage extends Screen implements KeyboardHandler {
 
         while (true) {
 
-            if (playing) {
+            if (music.isPlaying()) {
                 sleepNanos -= 100;
                 if (sleepNanos <= 0) {
                     if (distanceBetweenNotes > 100) {
@@ -95,6 +95,8 @@ public class Stage extends Screen implements KeyboardHandler {
                 } else {
                     streakText.delete();
                 }
+            } else {
+                stopGame();
             }
         }
     }
@@ -164,17 +166,21 @@ public class Stage extends Screen implements KeyboardHandler {
     public void keyPressed(KeyboardEvent keyboardEvent) {
         playing = !playing;
         if (!playing) {
-            Picture finalScore = new Picture((background.getWidth() - 400) / 2.0, background.getHeight() / 2.0 - 200, "resources/score.png");
-            finalScore.draw();
-            Text score = new Text(450, 330, counter.toString());
-            score.grow(10, 10);
-            score.setColor(Color.WHITE);
-            score.draw();
-            music.stopMusic();
+            stopGame();
         } else {
             start();
         }
 
+    }
+
+    public void stopGame() {
+        Picture finalScore = new Picture((background.getWidth() - 400) / 2.0, background.getHeight() / 2.0 - 200, "resources/score.png");
+        finalScore.draw();
+        Text score = new Text(450, 330, counter.toString());
+        score.grow(10, 10);
+        score.setColor(Color.WHITE);
+        score.draw();
+        music.stopMusic();
     }
 
     @Override
