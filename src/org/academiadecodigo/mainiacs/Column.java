@@ -16,6 +16,7 @@ public enum Column {
     private Color color;
     private double x;
     private String notePic;
+    private static int border = 10;
 
 
 
@@ -39,10 +40,10 @@ public enum Column {
 
     public static void draw() {
 
-        Line col1 = new Line(Column.COLUMN1.getX(),0,Column.COLUMN1.getX(),Screen.SCREEN_HEIGHT);
-        Line col2 = new Line(Column.COLUMN2.getX(),0,Column.COLUMN2.getX(),Screen.SCREEN_HEIGHT);
-        Line col3 = new Line(Column.COLUMN3.getX(),0,Column.COLUMN3.getX(),Screen.SCREEN_HEIGHT);
-        Line col4 = new Line(Column.COLUMN4.getX(),0,Column.COLUMN4.getX(),Screen.SCREEN_HEIGHT);
+        Line col1 = new Line(Column.COLUMN1.getX(),border,Column.COLUMN1.getX(),Screen.SCREEN_HEIGHT);
+        Line col2 = new Line(Column.COLUMN2.getX(),border,Column.COLUMN2.getX(),Screen.SCREEN_HEIGHT);
+        Line col3 = new Line(Column.COLUMN3.getX(),border,Column.COLUMN3.getX(),Screen.SCREEN_HEIGHT);
+        Line col4 = new Line(Column.COLUMN4.getX(),border,Column.COLUMN4.getX(),Screen.SCREEN_HEIGHT);
 
         col1.setColor(COLUMN1.getColor());
         col2.setColor(COLUMN2.getColor());
